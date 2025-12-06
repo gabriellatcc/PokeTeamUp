@@ -45,4 +45,25 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    /**
+     * Get the teams created by the user.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function teams() {
+        return $this->hasMany(Team::class);
+    }
+
+    /**
+     * Get the Pokemons favorited by the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Pokemon::class, 'favorites', 'user_id', 'pokemon_id')
+                    ->withTimestamps();
+    }
 }
