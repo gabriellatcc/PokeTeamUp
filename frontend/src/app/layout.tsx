@@ -4,6 +4,13 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
+import { Noto_Sans, Press_Start_2P } from 'next/font/google';
+
+const noto = Noto_Sans({ 
+  subsets: ['latin'], 
+  variable: '--font-noto-sans'
+});
+
 export const metadata: Metadata = {
   title: "PokeTeam UP",
   description: "Pokémons teams app",
@@ -15,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${noto.variable}`}>
       <body>
         <div className="h-screen flex flex-col">          
           <Header />

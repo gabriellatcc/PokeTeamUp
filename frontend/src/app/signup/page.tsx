@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input'; 
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog"; 
 import { TermsModalContent } from "@/components/TermsModalContent/TermsModalContent";
