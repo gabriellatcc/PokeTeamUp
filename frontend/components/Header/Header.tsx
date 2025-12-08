@@ -1,9 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { NavigationBar } from "@/src/components/NavigationBar/NavigationBar";
-import { UserMenu } from "@/src/components/UserMenu/UserMenu";
-import { Logo } from "@/src/components/Logo/Logo";
+import { NavigationBar } from "@/components/NavigationBar/NavigationBar";
+import { UserMenu } from "@/components/UserMenu/UserMenu";
+import { Logo } from "@/components/Logo/Logo";
 
 export default function Header() {
   const pathname = usePathname();
@@ -14,7 +14,7 @@ export default function Header() {
   const handleLogout = () => console.log("Logout function");
 
   //this sequence here is to define the header background by checking if the current page is one in the bluePlage array, if it does *
-  const bluePages = ["/signin", "/signup", "/home", "/"];
+  const bluePages = ["/signin", "/signup", "/home", "/","/pokedex"];
   const isBluePage = bluePages.includes(pathname);
   const headerColor = isBluePage ? "bg-[#79CAF9]" : "bg-[#D83138]";//* will be blue, if it doesn't means that is other type of page and will be a red color
 

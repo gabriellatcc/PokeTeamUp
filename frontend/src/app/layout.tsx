@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
 
-import Header from "@/src/components/Header/Header";
-import Footer from "@/src/components/Footer/Footer";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "PokeTeam UP",
@@ -18,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="h-screen flex flex-col justify-between">
-          <Header></Header>
-            <div>{children}</div>
-          <Footer></Footer>
+        <div className="h-screen flex flex-col">          
+          <Header />
+            <main className="flex-1 w-full relative flex flex-col">
+              {children}
+            </main>
+          <Footer />
         </div>
       </body>
     </html>
