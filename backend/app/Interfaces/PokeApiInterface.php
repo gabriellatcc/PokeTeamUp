@@ -2,8 +2,8 @@
 
 namespace App\Interfaces;
 
-interface pokeApiInterface{
+interface PokeApiInterface{
     public function getPokemonDataById(int $id);
-    public function getPokemonsData(int $limit);
+    public function getPokemonsData(int $limit, int $offset);
     public function getPokemonDataByName(string $name);
 }
