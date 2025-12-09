@@ -100,16 +100,14 @@ const PokedexScreen = () => {
             <div className="absolute inset-0 bg-[#79caf9]/20 z-[1]" />
 
             {/* SECTION ABOVE IMAGE */}
-            <div className="relative w-full h-[380]">
+            <div className="relative w-full h-full">
                 <img
                     src="/images/teste.jpg"
                     alt="Background de Pokémon"
                     className="absolute inset-0 h-full w-full object-cover z-0"
                 />
                 <div className="relative z-[2] w-full max-w-7xl mx-auto pt-24 pb-4 md:pt-15 md:pb-8 text-center px-4">
-                    <h1 className={`${pixelFont.className} text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4`}>
-                        POKÉDEX
-                    </h1>
+                   
                     
                     <div className="flex justify-start">
                         <Input  

@@ -8,37 +8,41 @@ import { Logo } from "@/components/Logo/Logo";
 export default function Header() {
   const pathname = usePathname();
 
-  //logic to simulate user logged in (true) and not logged in (false)
   const isLoggedIn = false;
-
   const handleLogout = () => console.log("Logout function");
 
-  //this sequence here is to define the header background by checking if the current page is one in the bluePlage array, if it does *
-  const bluePages = ["/signin", "/signup", "/home", "/","/pokedex"];
+  const bluePages = ["/signin", "/signup", "/home", "/", "/pokedex"];
   const isBluePage = bluePages.includes(pathname);
-  const headerColor = isBluePage ? "bg-[#79CAF9]" : "bg-[#D83138]";//* will be blue, if it doesn't means that is other type of page and will be a red color
+  const headerColor = isBluePage ? "bg-[#79CAF9]" : "bg-[#D83138]";
 
   const authPages = ["/signin", "/signup"];
   const isAuthPage = authPages.includes(pathname);
 
-
   return (
     <header
-      className={`${headerColor} w-full shadow-md transition-colors duration-300 relative z-50`}
+      className={`${headerColor} w-full shadow-md transition-colors duration-300 relative z-50 min-h-[96px] py-4 lg:py-0 flex items-center`}
     >
-      <nav className="relative flex justify-between items-center max-w-7xl mx-auto h-24 px-4">
+      <nav 
+        className="flex flex-wrap justify-between lg:grid lg:grid-cols-3 items-center max-w-7xl mx-auto w-full px-4 sm:px-8 gap-y-2 lg:gap-y-0"
+      >
         
-        {/* left navegation */}
-        <NavigationBar />
+        {/* nav menu */}
+        <div className="order-3 w-full flex justify-center mt-6 lg:mt-0 lg:order-none lg:w-auto lg:justify-start">
+          <NavigationBar currentPath={pathname} />
+        </div>
 
-        {/* logo in center */}
-        <Logo />
+        {/* logo */}
+        <div className="order-1 flex justify-center lg:justify-center">
+          <Logo />
+        </div>
 
-        {/* user actions as sign in or up*/}
-        {/* the Header decides if has to expose the menu, and this last one decides WHAT to expose*/}
-        {!isAuthPage && (
-            <UserMenu isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-        )}
+        {/* user menu to sign in/sign up */}
+        <div className="order-2 flex justify-end">
+          {!isAuthPage && (
+              <UserMenu isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+          )}
+        </div>
+
       </nav>
     </header>
   );
