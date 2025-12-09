@@ -89,4 +89,58 @@ class PokeApiRepository implements PokeApiInterface{
         
         return $pokemonData;
     }
+
+    /**
+    * Performs a partial search by Pokémon name, filtering out special forms.
+    * This method downloads the complete list of names to allow searching by
+    * parts of the string (e.g., "pi" finds "Pikachu"). It also filters IDs
+    * above 10,000 to ignore variants (Mega, Gmax, etc.).
+    *
+    * @param string $search The term to be searched.
+    * @param int $limit Limit of results returned (default: 9).
+    * @return array<PokeApiResponse> An array containing the detailed data of the Pokémon found.
+    */
+    public function searchPokemonsPartial(string $search, int $limit = 9): array {
+        $search = strtolower(trim($search));
+
+        $url = "https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0";
+        $response = Http::get($url);
+
+        if ($response->failed()) {
+            return [];
+        }
+
+        $allPokemons = $response->object()->results;
+
+        $matchedPokemons = array_filter($allPokemons, function($pokemon) use ($search) {
+            //checks if the name exists
+            if (stripos($pokemon->name, $search) === false) {
+                return false;
+            }
+
+            //extracts the ID from the URL ( "https://pokeapi.co/api/v2/pokemon/25/") to ignore variations and get only the URL path to avoid problems with http/https
+            $path = parse_url($pokemon->url, PHP_URL_PATH); 
+            //break the bars and take the last piece (the number)
+            $segments = explode('/', rtrim($path, '/'));
+            $id = (int) end($segments);
+
+            // if id is <10000, its a original pokemon, more than it is a variation
+            return $id < 10000;
+        });
+
+        //manual pagination (array cutting)
+        $matchedPokemons = array_slice($matchedPokemons, 0, $limit);
+
+        //search the details of the pokemons matched
+        $detailedPokemons = [];
+        foreach ($matchedPokemons as $pokemonSummary) {
+            try {
+                $detailedPokemons[] = $this->getPokemonDataFromUrl($pokemonSummary->url);
+            } catch (\Exception $e) {
+                continue; 
+            }
+        }
+
+        return $detailedPokemons;
+    }
 }

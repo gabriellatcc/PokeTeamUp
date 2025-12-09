@@ -1,3 +1,6 @@
+'use client'; 
+
+import { usePathname } from 'next/navigation';
 import { Noto_Sans_Devanagari } from 'next/font/google';
 
 const notoSans = Noto_Sans_Devanagari({
@@ -6,6 +9,12 @@ const notoSans = Noto_Sans_Devanagari({
 });
 
 export default function Footer() {
+    const pathname = usePathname();
+    //footer not shown
+    if (pathname === '/myteams') {
+        return null;
+    }
+
     return (
         <footer 
             className="h-[100px] w-full flex items-center justify-center bg-cover bg-center bg-no-repeat"

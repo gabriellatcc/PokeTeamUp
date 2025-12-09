@@ -18,6 +18,26 @@ class PokemonController extends Controller
     {
         $limit = $request->get('limit', 20);
         $page = $request->get('page', 1);
+        
+        if ($request->filled('name')) {
+            $name = $request->get('name');
+
+            try {
+                $pokemons = $this->pokeApiRepository->searchPokemonsPartial($name, $limit);
+
+                return response()->json([
+                    'data' => $pokemons,
+                    'limit' => count($pokemons), 
+                    'page' => 1,
+                ]);
+
+            } catch (\Exception $e) {
+                return response()->json([
+                    'data' => [],
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
 
         $offset = ($page - 1) * $limit;
 
