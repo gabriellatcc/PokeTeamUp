@@ -102,7 +102,7 @@ const PokedexScreen = () => {
             {/* SECTION ABOVE IMAGE */}
             <div className="relative w-full h-full">
                 <img
-                    src="/images/teste.jpg"
+                    src="/images/pokedex-bg.jpg"
                     alt="Background de Pokémon"
                     className="absolute inset-0 h-full w-full object-cover z-0"
                 />

@@ -1,33 +1,14 @@
 import axios from 'axios';
 
 const api = axios.create({
-   // baseURL: process.env.NEXT_PUBLIC_API_URL call api!!!!, 
-    timeout: 10000, 
+    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000',
     headers: {
         'Content-Type': 'application/json',
-    }
-});
-
-api.interceptors.request.use(
-    (config) => {
-        if (typeof window !== 'undefined') {
-            const token = localStorage.getItem('token');
-            if (token) {
-                config.headers.Authorization = `Bearer ${token}`;
-            }
-        }
-        return config;
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest', 
     },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
-
-api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+    withCredentials: true, 
+    withXSRFToken: true,  
+});
 
 export default api;

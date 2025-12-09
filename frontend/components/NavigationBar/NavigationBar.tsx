@@ -2,19 +2,23 @@ import Link from "next/link";
 
 interface NavigationBarProps {
   currentPath: string;
+  isLoggedIn?: boolean;
 }
 
-export function NavigationBar({ currentPath }: NavigationBarProps) {
+export function NavigationBar({ currentPath, isLoggedIn = false }: NavigationBarProps) {
   
   const navItems = [
-    { label: "Home", href: "/home" },
-    { label: "Pokedex", href: "/pokedex" },
-    { label: "My teams", href: "/myteams" },
+    { label: "Home", href: "/", public: true },
+    { label: "Pokedex", href: "/pokedex", public: true },
+    { label: "My teams", href: "/myteams", public: false },
   ];
 
   return (
     <div className="flex flex-wrap justify-center gap-3 sm:gap-6 lg:gap-8 items-center">
       {navItems.map((item) => {
+        //hiden item if logged in
+        if (!item.public && !isLoggedIn) return null;
+
         const isActive = currentPath === item.href;
 
         return (

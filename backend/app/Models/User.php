@@ -6,11 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable; 
 
     /**
      * The attributes that are mass assignable.
@@ -49,21 +50,9 @@ class User extends Authenticatable
 
     /**
      * Get the teams created by the user.
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function teams() {
         return $this->hasMany(Team::class);
-    }
-
-    /**
-     * Get the Pokemons favorited by the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function favorites()
-    {
-        return $this->belongsToMany(Pokemon::class, 'favorites', 'user_id', 'pokemon_id')
-                    ->withTimestamps();
     }
 }

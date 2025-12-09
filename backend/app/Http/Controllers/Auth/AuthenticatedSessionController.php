@@ -15,10 +15,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): Response
     {
+        //authenticates using the LoginRequest file that was created earlier
         $request->authenticate();
 
+        //regenerates the session for safety (prevents session lock-in)
         $request->session()->regenerate();
 
+        //returns empty json -> 204 (instead of redirecting)
         return response()->noContent();
     }
 
@@ -30,9 +33,8 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
+        
         return response()->noContent();
     }
 }
