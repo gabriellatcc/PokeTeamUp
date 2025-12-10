@@ -89,7 +89,7 @@ export const useLogout = () => {
     return useMutation({
         mutationFn: async () => {
             await api.post('/logout');
-            await api.post('/');
+            await api.post('/logout');
         },
         onSuccess: () => {
             window.location.href = '/signin'; 

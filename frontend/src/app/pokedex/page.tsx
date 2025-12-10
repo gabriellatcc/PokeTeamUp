@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { ChevronLeft, ChevronRight, LoaderCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, LoaderCircle, Search } from 'lucide-react';
 import PokedexCard, { PokemonData } from '@/components/PokedexCard/PokedexCard';
 import { Input } from '@/components/ui/input'; 
 
@@ -39,12 +39,14 @@ const PokedexScreen = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [hasMore, setHasMore] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const fetchPokemons = async (pageNumber: number) => {
+    const fetchPokemons = async (pageNumber: number, search: string = '') => {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${API_URL}?page=${pageNumber}&limit=${ITEMS_PER_PAGE}`);
+            const searchParam = search ? `&name=${search}` : ''; 
+            const response = await fetch(`${API_URL}?page=${pageNumber}&limit=${ITEMS_PER_PAGE}${searchParam}`);
             
             if (!response.ok) {
                 throw new Error('Failed to retrieve Pokémon data.');
@@ -53,7 +55,6 @@ const PokedexScreen = () => {
             
             setHasMore(result.data.length === ITEMS_PER_PAGE);
             
-            //adds a unique key to avoid re-rendering issues, used internally by React(kept for typing purposes).
             const uniquePokemons = result.data.map((p, index) => ({
                 ...p,
                 uniqueKey: `${p.id}-${index}` 
@@ -61,7 +62,7 @@ const PokedexScreen = () => {
 
             setPokemons(uniquePokemons);
             setPage(result.page);
-
+            
         } catch (err: any) {
             console.error("Fetch error:", err);
             setError(err.message);
@@ -72,8 +73,12 @@ const PokedexScreen = () => {
     };
 
     useEffect(() => {
-        fetchPokemons(page);
-    }, [page]);
+        const timeoutId = setTimeout(() => {
+            fetchPokemons(page, searchTerm); 
+        }, 500);
+
+        return () => clearTimeout(timeoutId);
+    }, [page, searchTerm]);
 
     const handleNextPage = () => {
         if (hasMore) {
@@ -85,6 +90,11 @@ const PokedexScreen = () => {
         if (page > 1) {
             setPage(prev => prev - 1);
         }
+    };
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+        setPage(1); 
     };
 
     return (
@@ -110,11 +120,16 @@ const PokedexScreen = () => {
                    
                     
                     <div className="flex justify-start">
-                        <Input  
-                            type="searchbar"
-                            placeholder="Search any pokemon by name or number"  
-                            className="h-12 w-full max-w-sm text-left text-lg rounded-md shadow-sm border-white/0 focus-visible:ring-[#f2f2f2] bg-[#f2f2f2]"
-                        />
+                        <div className="relative w-full max-w-sm">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                            <Input  
+                                type="text"
+                                placeholder="Search any pokemon by name or number" 
+                                value={searchTerm}
+                                onChange={handleSearchChange} 
+                                className="h-12 w-full pl-10 text-left text-lg rounded-md shadow-sm border-white/0 focus-visible:ring-[#f2f2f2] bg-[#f2f2f2]"
+                            />
+                        </div>
                     </div>
                 </div>
                 
@@ -156,7 +171,7 @@ const PokedexScreen = () => {
                     <div className="flex justify-center items-center space-x-4 mt-10 p-4 bg">
                         <button
                             onClick={handlePreviousPage}
-                            disabled={page === 1}
+                            disabled={page === 1 || isLoading}
                             className="p-3 bg-blue-600 text-white rounded-lg shadow-md disabled:opacity-30 hover:bg-blue-500 transition duration-150 flex items-center font-semibold"
                         >
                             <ChevronLeft className="w-5 h-5 mr-1" />
@@ -166,7 +181,7 @@ const PokedexScreen = () => {
                         </span>
                         <button
                             onClick={handleNextPage}
-                            disabled={!hasMore} 
+                            disabled={!hasMore || isLoading} 
                             className="p-3 bg-red-600 text-white rounded-lg shadow-md disabled:opacity-30 hover:bg-red-500 transition duration-150 flex items-center font-semibold"
                         >
                             <ChevronRight className="w-5 h-5 ml-1" />
