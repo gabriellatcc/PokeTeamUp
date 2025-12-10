@@ -15,23 +15,20 @@ interface LoginData {
 export const useRegister = () => {
     const router = useRouter();
     const queryClient = useQueryClient();
-
-    return useMutation({
-        mutationFn: async (data: RegisterData) => {
-            // require cookie
+return useMutation({
+        mutationFn: async (data: RegisterData): Promise<LoginResponse> => {
             await api.get('/sanctum/csrf-cookie');
             
-            // create user
             const response = await api.post('/register', data);
-            return response.data;
+            return response.data as LoginResponse;
         },
         onSuccess: (data) => {
-            console.log('Success:', data);
-            
-            // forces React Query to find out who the logged-in user is immediatily
-            queryClient.invalidateQueries({ queryKey: ['user'] }); 
+            if (data.token) {
+                localStorage.setItem('authToken', data.token); 
+                console.log('Sanctum Token salvo após o registro.');
+            }
 
-            // redirect to home
+            queryClient.invalidateQueries({ queryKey: ['user'] }); 
             router.push('/'); 
         },
         onError: (error: any) => {
@@ -39,20 +36,31 @@ export const useRegister = () => {
         }
     });
 };
+interface LoginResponse {
+    token: string;
+    token_type: string;
+    user?: any;
+}
 
 export const useLogin = () => {
     const router = useRouter();
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({ email, password }: LoginData) => {
+        mutationFn: async ({ email, password }: LoginData): Promise<LoginResponse> => {
             await api.get('/sanctum/csrf-cookie');
-            const response = await api.post('/login', { email, password });
-            return response.data;
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['user'] });
             
+            const response = await api.post('/login', { email, password });
+            return response.data as LoginResponse;
+        },
+        onSuccess: (data) => { 
+            if (data.token) {
+                localStorage.setItem('authToken', data.token); 
+                console.log('Sanctum Token salvo com sucesso.');
+            } else {
+                console.error('Login bem-sucedido, mas token não encontrado na resposta.');
+            }
+            queryClient.invalidateQueries({ queryKey: ['user'] });
             router.push('/');
         },
         onError: (error: any) => {
@@ -81,6 +89,7 @@ export const useLogout = () => {
     return useMutation({
         mutationFn: async () => {
             await api.post('/logout');
+            await api.post('/');
         },
         onSuccess: () => {
             window.location.href = '/signin'; 

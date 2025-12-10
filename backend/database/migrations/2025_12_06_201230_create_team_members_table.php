@@ -9,12 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
     public function up(): void
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->constrained('team')->cascadeOnDelete();
-            $table->foreignId('pokemon_id')->constrained('pokemon')->cascadeOnDelete();
+            
+            $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete();
+            
+            $table->foreignId('pokemon_id')->constrained('pokemon')->cascadeOnDelete(); 
             $table->integer('position')->nullable();
             $table->timestamps();
         });

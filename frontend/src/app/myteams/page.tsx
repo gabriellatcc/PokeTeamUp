@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
+import axios from 'axios';
 
 import TeamCard, { TeamData } from '@/components/TeamCard/TeamCard';
 import TeamDetailsPanel from '@/components/TeamDetailsPanel/TeamDetailsPanel';
@@ -12,39 +13,147 @@ import PokemonSelectorPanel from '@/components/PokemonSelectorPanel/PokemonSelec
 import { PokemonData } from '@/components/PokedexCard/PokedexCard';
 
 const BACKGROUND_IMAGE_URL = 'https://placehold.co/1920x1080/0d2c3e/ffffff?text=PokeTeam+Background';
+const API_URL = 'http://localhost:8000/api/teams';
+const getAuthToken = () => {
+    const token = localStorage.getItem('authToken'); 
+    console.log('Token sendo enviado:', token); 
+    return token; 
+};
 
 export default function MyteamsScreen() {
     const [teams, setTeams] = useState<TeamData[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [rightPanelMode, setRightPanelMode] = useState<'details' | 'selector'>('details');
     const [editingContext, setEditingContext] = useState<{ teamId: string, slotIndex: number } | null>(null);
+    const fetchTeams = async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetch(API_URL, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${getAuthToken()}`, 
+                },
+            });
 
-    const handleCreateTeam = () => {
-        const newTeam: TeamData = {
-            id: `team-${Date.now()}`,
-            name: `Team ${teams.length + 1}`,
+            if (!response.ok) {
+                console.error('API Error fetching teams:', await response.json());
+                return;
+            }
+
+            const teamsData = await response.json();
+            
+            const formattedTeams: TeamData[] = teamsData.map((team: any) => ({
+                id: team.id.toString(),
+                name: team.name,
+                pokemons: team.pokemons?.map((p: any) => ({ 
+                    id: p.id,
+                    name: p.name,
+                    image: p.imgUrl,
+                    types: p.types,
+                })) || [], 
+            }));
+
+            setTeams(formattedTeams);
+
+        } catch (error) {
+            console.error('Network or other error fetching teams:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    useEffect(() => {
+        fetchTeams();
+    }, []);
+    const handleCreateTeam = async () => { 
+        
+        const newTeamData = {
+            name: `Team ${teams.length + 1}`, 
             pokemons: [] 
         };
-        setTeams([...teams, newTeam]);
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getAuthToken()}`, 
+                },
+                body: JSON.stringify(newTeamData),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('API Error creating team:', errorData);
+                alert(`Failed to create team: ${errorData.message || 'Validation failed'}`);
+                return;
+            }
+
+            const createdTeam = await response.json();
+
+            const teamForState: TeamData = {
+                id: createdTeam.id.toString(),
+                name: createdTeam.name,
+                pokemons: createdTeam.pokemons?.map((p: any) => ({ 
+                    id: p.id,
+                    name: p.name,
+                    image: p.imgUrl, 
+                    types: p.types,
+                })) || [], 
+            };
+
+            setTeams(prevTeams => [...prevTeams, teamForState]);
+            console.log('Team created successfully and state updated:', createdTeam);
+
+        } catch (error) {
+            console.error('Network or other error:', error);
+            alert('Failed to connect to the server.');
+        }
     };
 
-    // updates the name
-    const handleUpdateTeamName = (teamId: string, newName: string) => {
+   const handleUpdateTeamName = async (teamId: string, newName: string) => {
+    const teamToUpdate = teams.find(t => t.id === teamId);
+    if (!teamToUpdate) return;
+    
+    const updateData = {
+        id: teamId, 
+        name: newName,
+        pokemons: teamToUpdate.pokemons.filter(p => p !== null).map(p => ({ id: p!.id })), 
+    };
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getAuthToken()}`, 
+            },
+            body: JSON.stringify(updateData),
+        });
+
+        if (!response.ok) {
+            console.error('API Error updating team name:', await response.json());
+            alert('Failed to update team name on server.');
+            return; 
+        }
+        
         setTeams(prevTeams => prevTeams.map(team => {
-            //if the team is found by ID, update the name
             if (team.id === teamId) {
                 return { ...team, name: newName };
             }
             return team;
         }));
-    };
-    //opens the pokemon selector
+
+    } catch (error) {
+        console.error('Network or other error:', error);
+        alert('Failed to connect to the server.');
+    }
+};
     const handleOpenSelector = (teamId: string, slotIndex: number) => {
         setEditingContext({ teamId, slotIndex });
         setRightPanelMode('selector');
     };
 
-    //handles the pokemon selection
     const handleSelectPokemon = (pokemon: PokemonData) => {
         if (editingContext) {
             setTeams(prevTeams => prevTeams.map(team => {
@@ -67,7 +176,6 @@ export default function MyteamsScreen() {
         setRightPanelMode('details');
         setEditingContext(null);
     };
-    //
     const handleCancelSelection = () => {
         setRightPanelMode('details');
         setEditingContext(null);
@@ -81,9 +189,29 @@ export default function MyteamsScreen() {
         setTeams(items);
     };
 
-    const handleDeleteTeam = (id: string) => {
+   const handleDeleteTeam = async (id: string) => {
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${getAuthToken()}`, 
+            },
+        });
+
+        if (!response.ok) {
+            console.error('API Error deleting team:', await response.json());
+            alert('Failed to delete team on server.');
+            return;
+        }
+
         setTeams(teams.filter(t => t.id !== id));
-    };
+        console.log('Team deleted successfully:', id);
+
+    } catch (error) {
+        console.error('Network or other error:', error);
+        alert('Failed to connect to the server.');
+    }
+};
 
     return (
         <section className="relative w-full h-screen flex flex-col items-center justify-start bg-black overflow-hidden">        

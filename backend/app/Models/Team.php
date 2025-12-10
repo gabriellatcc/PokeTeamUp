@@ -2,11 +2,17 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pokemon;
 
 class Team extends Model
 {   
+    /**
+     *
+     * @var string
+     */
+    protected $table = 'team';
+
     /** @use HasFactory<\Database\Factories\TeamFactory> */
     use HasFactory;
 
@@ -19,7 +25,7 @@ class Team extends Model
        'user_id',
        'name',
     ];
-
+    
     /**
      * Get the user that owns the team.
      *
@@ -36,8 +42,13 @@ class Team extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function pokemons() {
-        return $this->belongsToMany(Pokemon::class, 'team_members')
-                    ->withPivot('position') //colunm position
-                    ->withTimestamps();
+        return $this->belongsToMany(
+            Pokemon::class, 
+            'team_members', 
+            'team_id',
+            'pokemon_id'   
+        )
+        ->withPivot('position') //colunm position
+        ->withTimestamps();
     }
 }

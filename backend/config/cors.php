@@ -11,17 +11,25 @@
     | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
     |
     */
+// config/cors.php
+
 return [
 
-    'paths' => ['*', 'sanctum/csrf-cookie'], 
+    'paths' => [
+        'api/*', 
+        'sanctum/csrf-cookie', 
+        'logout',
+        'register'
+    ],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000'],
+    'allowed_origins' => [
+            'http://localhost:3000',
+            'http://127.0.0.1:3000',
+        ],
 
-    'allowed_origins_patterns' => [],
-
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['*', 'Authorization', 'Content-Type', 'X-Requested-With'], 
 
     'exposed_headers' => [],
 
