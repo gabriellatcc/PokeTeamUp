@@ -48,7 +48,7 @@ export function UserMenu({ isLoggedIn, onLogout, userName }: UserMenuProps) {
 
       <Link href="/signup">
         <Button 
-            className="bg-[#FFCB05] text-[#3B4CCA] font-extrabold text-base hover:bg-[#ffdd57] border-b-4 border-[#c7a008] active:border-b-0 active:translate-y-1 transition-all rounded-xl shadow-lg"
+            className="bg-[#FFCC57] text-[#SECONDARY] font-extrabold text-base hover:bg-[#chart-4] border-b-4 border-[#chart-5] active:border-b-0 active:translate-y-1 transition-all rounded-xl shadow-lg"
         >
             Sign up
         </Button>

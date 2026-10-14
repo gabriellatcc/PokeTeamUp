@@ -220,8 +220,8 @@ export default function MyteamsScreen() {
             <style jsx global>{`
                 .custom-scrollbar::-webkit-scrollbar { width: 8px; }
                 .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: #4f5175; border-radius: 4px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #6d28d9; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #popover; border-radius: 4px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #border; }
             `}</style>
                     
             <div className="absolute inset-0 z-0 overflow-hidden">
@@ -241,14 +241,14 @@ export default function MyteamsScreen() {
                                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-black z-10">
                                     <Search className="w-6 h-6" />
                                 </div>
-                                <Input type="text" placeholder="Search team..." className="h-12 pl-12 w-full text-lg rounded-full shadow-lg border-2 border-transparent focus-visible:ring-0 focus-visible:border-blue-500 bg-[#f2f2f2] text-black" />
+                                <Input type="text" placeholder="Search team..." className="h-12 pl-12 w-full text-lg rounded-full shadow-lg border-2 border-transparent focus-visible:ring-0 focus-visible:border-blue-500 bg-[#foreground] text-black" />
                             </div>
 
                             {teams.length === 0 ? (
                                 <div className="w-full h-[65vh] flex flex-col items-center justify-center border-2 border-dashed border-white/10 rounded-xl bg-black/20">
                                     <p className="text-white text-lg font-medium mb-4 shadow-black drop-shadow-md">No team created yet. Create now!</p>
-                                    <button onClick={handleCreateTeam} className="w-full max-w-3xl bg-[#f2f2f2] hover:bg-white h-14 rounded-full flex items-center justify-center shadow-xl transition-transform hover:scale-[1.01] active:scale-95 group">
-                                        <div className="bg-[#1a1b26] rounded-full p-1 group-hover:bg-black transition-colors"><Plus className="w-5 h-5 text-white" /></div>
+                                    <button onClick={handleCreateTeam} className="w-full max-w-3xl bg-[#foreground] hover:bg-white h-14 rounded-full flex items-center justify-center shadow-xl transition-transform hover:scale-[1.01] active:scale-95 group">
+                                        <div className="bg-[#background] rounded-full p-1 group-hover:bg-black transition-colors"><Plus className="w-5 h-5 text-white" /></div>
                                     </button>
                                 </div>
                             ) : (
@@ -277,8 +277,8 @@ export default function MyteamsScreen() {
                                             )}
                                         </Droppable>
                                     </DragDropContext>
-                                    <button onClick={handleCreateTeam} className="w-full mt-4 h-14 bg-[#f2f2f2] hover:bg-white rounded-full flex flex-col items-center justify-center shadow-xl transition-transform hover:scale-[1.01] active:scale-95 group">
-                                        <div className="bg-[#1a1b26] rounded-full p-1 group-hover:bg-black transition-colors"><Plus className="w-5 h-5 text-white" /></div>
+                                    <button onClick={handleCreateTeam} className="w-full mt-4 h-14 bg-[#foreground] hover:bg-white rounded-full flex flex-col items-center justify-center shadow-xl transition-transform hover:scale-[1.01] active:scale-95 group">
+                                        <div className="bg-[#background] rounded-full p-1 group-hover:bg-black transition-colors"><Plus className="w-5 h-5 text-white" /></div>
                                     </button>
                                 </div>
                             )}

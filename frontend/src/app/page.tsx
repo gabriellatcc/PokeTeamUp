@@ -45,7 +45,7 @@ export default function HomeScreen() {
                     Explore the Pokédex, view detailed stats, and build the ultimate team. Star your favorite Pokémon to keep them just a click away.
                 </p>
                <Button
-                    className= {`${pixelFont.className} bg-[#76e39e] text-black hover:bg-[#76e39e]/90 transition-all duration-300 px-12 py-7 text-xl font-bold rounded-full shadow-lg hover:shadow-2xl border-2 border-[#47583e] h-6 w-60`}
+                    className= {`${pixelFont.className} bg-[#chart-4] text-black hover:bg-[#chart-4]/90 transition-all duration-300 px-12 py-7 text-xl font-bold rounded-full shadow-lg hover:shadow-2xl border-2 border-[#chart-5] h-6 w-60`}
                     size="lg"
                 >Try</Button>
             </div>

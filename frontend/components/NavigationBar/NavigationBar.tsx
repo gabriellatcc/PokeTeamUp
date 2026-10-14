@@ -29,8 +29,8 @@ export function NavigationBar({ currentPath, isLoggedIn = false }: NavigationBar
               font-bold text-base lg:text-lg whitespace-nowrap
               transition-all duration-300 ease-in-out transform
               ${isActive 
-                ? "text-[#3b4cca] scale-110 lg:scale-125"
-                : "text-white hover:text-[#3b4cca] hover:scale-105 lg:hover:scale-110"
+                ? "text-[#secondary] scale-110 lg:scale-125"
+                : "text-white hover:text-[#secondary] hover:scale-105 lg:hover:scale-110"
               }
             `}
           >

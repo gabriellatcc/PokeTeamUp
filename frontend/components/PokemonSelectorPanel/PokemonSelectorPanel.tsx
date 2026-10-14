@@ -52,10 +52,10 @@ const PokemonSelectorPanel: React.FC<PokemonSelectorPanelProps> = ({ onSelect, o
   }, [page, searchTerm]);
 
   return (
-    <div className="w-full h-[75vh] bg-[#1a1b26]/95 border-[4px] border-[#133a78] rounded-xl flex flex-col relative shadow-2xl overflow-hidden">
+    <div className="w-full h-[75vh] bg-[#background]/95 border-[4px] border-[#muted] rounded-xl flex flex-col relative shadow-2xl overflow-hidden">
       
       {/* painel header with title */}
-      <div className="p-4 bg-[#0f111a] border-b border-[#4f5175] flex justify-between items-center">
+      <div className="p-4 bg-[#background] border-b border-[#popover] flex justify-between items-center">
         <h2 className="text-white text-lg font-bold">Select Pokémon</h2>
         <button onClick={onCancel} className="text-gray-400 hover:text-white transition-colors">
             <X className="w-5 h-5" />
@@ -63,7 +63,7 @@ const PokemonSelectorPanel: React.FC<PokemonSelectorPanelProps> = ({ onSelect, o
       </div>
 
       {/* Barra de Busca */}
-      <div className="p-4 bg-[#1a1b26]">
+      <div className="p-4 bg-[#background]">
         <div className="relative">
              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <Input 
@@ -74,7 +74,7 @@ const PokemonSelectorPanel: React.FC<PokemonSelectorPanelProps> = ({ onSelect, o
                     setSearchTerm(e.target.value);
                     setPage(1);
                 }}
-                className="h-10 pl-9 rounded-full bg-[#0f111a] border-gray-700 text-white focus-visible:ring-blue-500"
+                className="h-10 pl-9 rounded-full bg-[#background] border-gray-700 text-white focus-visible:ring-blue-500"
             />
         </div>
       </div>
@@ -114,7 +114,7 @@ const PokemonSelectorPanel: React.FC<PokemonSelectorPanelProps> = ({ onSelect, o
       </div>
 
       {/* Paging */}
-      <div className="p-3 bg-[#0f111a] border-t border-[#4f5175] flex justify-between items-center text-xs">
+      <div className="p-3 bg-[#background] border-t border-[#popover] flex justify-between items-center text-xs">
           <button 
               onClick={() => setPage(p => Math.max(1, p - 1))}
               disabled={page === 1 || isLoading}

@@ -116,7 +116,7 @@ export const FullStackOverviewSection: React.FC = () => {
             <div className="max-w-7xl mx-auto">
                 {/* TITLE 1 DIV*/}
                 <div className="flex items-center justify-center space-x-4 mb-10">
-                    <span className="text-sm font-semibold text-[#76E39E] whitespace-nowrap tracking-widest">
+                    <span className="text-sm font-semibold text-[#chart-4] whitespace-nowrap tracking-widest">
                         TECHNICAL SPECIFICATIONS
                     </span>
                 </div>

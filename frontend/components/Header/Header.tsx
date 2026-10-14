@@ -20,7 +20,7 @@ export default function Header() {
 
   const bluePages = ["/signin", "/signup", "/", "/pokedex"];
   const isBluePage = bluePages.includes(pathname);
-  const headerColor = isBluePage ? "bg-[#79CAF9]" : "bg-[#D83138]";
+  const headerColor = isBluePage ? "bg-[#CHART-2]" : "bg-[#primary]";
 
   const authPages = ["/signin", "/signup"];
   const isAuthPage = authPages.includes(pathname);

@@ -91,14 +91,14 @@ const TeamCard: React.FC<TeamCardProps> = ({
       {/* btn to drag team*/}
       <div 
         {...dragHandleProps}
-        className="absolute -left-5 z-20 bg-[#3b4cca] h-16 w-8 rounded-l-full flex items-center justify-center cursor-grab active:cursor-grabbing shadow-md border-r border-gray-200"
+        className="absolute -left-5 z-20 bg-[#secondary] h-16 w-8 rounded-l-full flex items-center justify-center cursor-grab active:cursor-grabbing shadow-md border-r border-gray-200"
         title="Drag to reorder"
       >
         <GripVertical className="w-5 h-5 text-black" />
       </div>
 
       {/* main card */}
-      <div className="w-full bg-[#151515] min-h-[15rem] rounded-xl p-5 shadow-xl border border-gray-800 relative z-10 ml-2">
+      <div className="w-full bg-[#background] min-h-[15rem] rounded-xl p-5 shadow-xl border border-gray-800 relative z-10 ml-2">
         
         {/* card header */}
         <div className="flex justify-between items-center mb-4 h-10">
@@ -112,7 +112,7 @@ const TeamCard: React.FC<TeamCardProps> = ({
                   value={tempName}
                   onChange={(e) => setTempName(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  className="bg-[#222] text-white text-xl font-bold px-2 py-1 rounded border border-blue-500 outline-none w-full max-w-[300px]"
+                  className="bg-[#background] text-white text-xl font-bold px-2 py-1 rounded border border-blue-500 outline-none w-full max-w-[300px]"
                 />
                 <button onClick={handleSave} className="text-green-500 hover:text-green-400 p-1">
                   <Check className="w-5 h-5" />
@@ -167,9 +167,9 @@ const TeamCard: React.FC<TeamCardProps> = ({
               ) : (
                 <button 
                   onClick={() => onAddPokemon(index)}
-                  className="w-full h-full bg-[#333333] hover:bg-[#404040] flex items-center justify-center transition-colors group/add"
+                  className="w-full h-full bg-[#CARD] hover:bg-[#SIDEBAR] flex items-center justify-center transition-colors group/add"
                 >
-                  <div className="bg-[#1a1b26] rounded-full p-1 group-hover/add:scale-110 transition-transform">
+                  <div className="bg-[#background] rounded-full p-1 group-hover/add:scale-110 transition-transform">
                      <Plus className="w-6 h-6 text-green-500" />
                   </div>
                 </button>
