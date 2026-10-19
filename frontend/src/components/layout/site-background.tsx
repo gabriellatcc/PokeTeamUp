@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ROUTE_BACKGROUNDS, DEFAULT_BACKGROUND } from "../../lib/site-content";
+import { ROUTE_BACKGROUNDS, DEFAULT_BACKGROUND } from "../../lib/content/site-content";
 
 export function PageBackground() {
   const pathname = usePathname();
+
+  if (pathname === "/" || pathname.startsWith("/home")) return null;
+
   const src =
     Object.entries(ROUTE_BACKGROUNDS).find(([route]) =>
       pathname.startsWith(route)
