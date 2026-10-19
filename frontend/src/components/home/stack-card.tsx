@@ -15,26 +15,32 @@ export const StackCard: React.FC<StackItem> = ({
   iconClass: Icon,
   iconColorClass,
 }) => {
-  const isCssVar = iconColorClass.startsWith("var(");
+  const iconColor =
+    iconColorClass.startsWith("var(") ||
+    iconColorClass.startsWith("oklch")
+      ? iconColorClass
+      : `var(--color-${iconColorClass.replace(/^text-/, "")})`;
+
   return (
-    <Card>
-     {/* className="border-primary-foreground/50 bg-card transition-all duration-300 hover:border-primary-foreground/80 shadow-md shadow-black/20 dark:shadow-none dark:drop-shadow-md dark:drop-shadow-primary-foreground/25" */}
+    <Card className="h-full min-w-0 overflow-hidden transition-all duration-300 hover:-translate-y-0.5">
       <CardHeader>
-        <CardTitle className="flex items-center gap-3 text-2xl font-bold text-foreground">
+        <CardTitle className="flex min-h-[3.25rem] items-start gap-3 min-w-0 text-lg sm:text-xl font-bold text-foreground">
           <Icon
-            className={`text-4xl text-${iconColorClass}`}
-            style={isCssVar ? { color: iconColorClass } : undefined}
-             aria-hidden="true"
+            className="mt-0.5 shrink-0 text-3xl"
+            style={{ color: iconColor }}
+            aria-hidden="true"
           />
-          <span>{title}</span>
+          <span className="min-w-0 flex-1 break-words leading-tight">{title}</span>
           {version && (
-            <span className={`text-sm font-medium text-${iconColorClass}40`}>{version}</span>
+            <span className="shrink-0 text-xs font-medium opacity-70">
+              {version}
+            </span>
           )}
         </CardTitle>
       </CardHeader>
 
-      <CardContent>
-        <CardDescription className="text-foreground">
+      <CardContent className="flex-1">
+        <CardDescription className="text-sm leading-relaxed text-foreground">
           {description}
         </CardDescription>
       </CardContent>

@@ -19,21 +19,21 @@ export const TECH_STACK = [
       title: 'Next.js',
       description: 'App Router was used for hybrid rendering and SEO optimization. Midleware for access control via Edge.',
       iconClass: SiNextdotjs,
-      iconColorClass: 'foreground'
+      iconColorClass: 'var(--foreground)'
     },
     {
       version: 'v13',
       title: 'React Query',
       description: 'A robust architecture combining the performance of Server-Side Rendering with the security of a consolidated API.',
       iconClass: IoCloudDone,
-      iconColorClass: 'muted-foreground'
+      iconColorClass: 'var(--muted-foreground)'
     },
     {
       version: '',
       title: 'Tailwind + Shadcn/ui',
       description: 'Component-based interface that is accessible and responsive. Consistent design system focused on user experience.',
       iconClass: RiTailwindCssFill,
-      iconColorClass: 'secondary'
+      iconColorClass: 'var(--secondary)'
     },
     {
       version: '',
@@ -47,13 +47,13 @@ export const TECH_STACK = [
       title: 'Laravel Sanctum',
       description: 'A lightweight authentication system for SPAs (Single Page Applications) and mobile applications.',
       iconClass: IoLockClosed,
-      iconColorClass: 'destructive'
+      iconColorClass: 'var(--destructive)'
     },
     {
       version: 'v12',
       title: 'Laravel',
       description: 'A robust RESTful API serving as a source of truth. It manages complex business rules and data persistence.',
       iconClass: FaLaravel,
-      iconColorClass: 'primary'
+      iconColorClass: 'var(--primary)'
     },
 ];

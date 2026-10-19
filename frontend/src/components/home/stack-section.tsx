@@ -23,7 +23,7 @@ export const StackSection: React.FC = () => {
                     </span>
                 </div>
                 {/* TITLE 2*/}
-                <h2 className={`${pixelFont.className} text-center text-4xl md:text-5xl 4font-extrabold text-foreground mb-6 md:mb-8 max-w-4xl mx-auto leading-snug `}>
+                <h2 className="font-sans text-center text-4xl md:text-5xl font-extrabold text-foreground mb-6 md:mb-8 max-w-4xl mx-auto leading-snug">
                     FULL STACK OVERVIEW
                 </h2>
                 {/* GRID DIV FOR CARDS */}
