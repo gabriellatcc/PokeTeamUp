@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { NavigationBar } from "../../components/layout/NavigationBar";
 
 //logica apra logado s/n e trocar nome de usuario e botrao de logout para botoes de sign in e sign up
-import { UserMenu } from "../../components/UserMenu/UserMenu";
+import { UserMenu } from "../settings/avatar-dropdown";
 
 import { Logo } from "../../components/layout/Logo";
 
