@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input'; 
-import { Separator } from "@/components/ui/separator";
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Separator } from "../../components/ui/separator";
 import Link from 'next/link';
 import { useLogin } from '@/src/hooks/useAuth';
 
@@ -33,14 +33,7 @@ export default function LoginScreen() {
 
   return (
     <section className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden min-h-screen">
-       
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-      {/* BACKGROUND IMAGE */}
-      <div className="absolute inset-0 z-0">
-        <img src="/images/auth-bg.jpg" alt="Background" className="w-full h-full object-cover" />
-      </div>
-
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       {/* FORM CARD */}
       <main className="relative z-10 flex flex-col items-center w-full max-w-sm px-4">
 
@@ -57,7 +50,6 @@ export default function LoginScreen() {
 
         {/* FORM */}
         <div className="w-full space-y-4 flex flex-col items-center animate-in fade-in zoom-in-95 duration-500 delay-150">
-          
           {/* error if fail */}
           {error && (
             <div className="w-full p-3 bg-red-500/90 text-white rounded-md text-sm text-center border border-red-700">
@@ -66,31 +58,31 @@ export default function LoginScreen() {
           )}
 
           {/* INPUT EMAIL */}
-          <Input 
+          <Input
             name="email"
             value={formData.email}
-            onChange={handleChange} 
-            type="email" 
-            placeholder="Email" 
+            onChange={handleChange}
+            type="email"
+            placeholder="Email"
             className="h-12 text-lg rounded-md shadow-sm border-white/0 focus-visible:ring-[#SECONDARY] bg-[#foreground]"
           />
 
           {/* INPUT PASSWORD */}
-          <Input 
+          <Input
             name="password"
             value={formData.password}
             onChange={handleChange}
-            type="password" 
-            placeholder="Password" 
+            type="password"
+            placeholder="Password"
             className="h-12 text-lg rounded-md shadow-sm border-white/50 focus-visible:ring-[#SECONDARY] bg-[#foreground]"
           />
 
           {/* btn START */}
-          <Button 
-            onClick={handleSubmit} 
+          <Button
+            onClick={handleSubmit}
             disabled={isPending}
             className="w-full h-12 text-xl font-bold rounded-xl shadow-lg mt-4
-                       bg-[#SECONDARY] hover:bg-[#SECONDARY] text-white 
+                       bg-[#SECONDARY] hover:bg-[#SECONDARY] text-white
                        border-b-4 border-[#border] active:scale-95 active:border-b-0 active:translate-y-1 transition-all"
           >
             {isPending ? 'Loading...' : 'Start'}
@@ -99,13 +91,11 @@ export default function LoginScreen() {
         </div>
 
         <div className="mt-8 flex flex-col items-center w-full animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-          
           <Separator className="mb-6 bg-black/20" />
-          
           {/* register btn*/}
           <Link href="/signup" className="w-full flex justify-center">
-            <Button 
-                variant="outline" 
+            <Button
+                variant="outline"
                 className="px-12 py-1 rounded-full text-lg h-auto
                         border-2 border-[#muted] text-[#background] bg-transparent
                         hover:bg-[#muted]/20 hover:text-[#background] active:scale-95 active:translate-y-1 transition-all"
@@ -115,7 +105,7 @@ export default function LoginScreen() {
           </Link>
 
           <p className="mt-4 text-[#background] text-sm font-semibold bg-transparent px-3 py-1">
-            Forgot your password? 
+            Forgot your password?
             <a href="#" className="font-bold text-[#muted] hover:text-[#chart-2] hover:underline ml-1 transition-colors">Click here</a>
           </p>
         </div>

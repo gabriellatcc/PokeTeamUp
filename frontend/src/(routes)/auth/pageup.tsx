@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input'; 
-import { Separator } from "@/components/ui/separator";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog"; 
-import { TermsModalContent } from "@/components/TermsModalContent/TermsModalContent";
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input'; 
+import { Separator } from "../../components/ui/separator";
+import { Checkbox } from "../../components/ui/checkbox";
+import { Dialog, DialogTrigger } from "../../components/ui/dialog"; 
+import { TermsModalContent } from "../../components/TermsModalContent/TermsModalContent";
 import { useRegister } from '@/src/hooks/useAuth';
 import Link from 'next/link';
 
@@ -40,13 +40,7 @@ export default function RegisterScreen() {
   return (
     <section className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden min-h-screen">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-      {/* BACKGROUND IMAGE */}
-      <div className="absolute inset-0 z-0">
-        <img src="/images/auth-bg.jpg" alt="Background" className="w-full h-full object-cover" />
-      </div>
-
-      <main className="relative z-10 flex flex-col items-center w-full max-w-sm px-4">
+       <main className="relative z-10 flex flex-col items-center w-full max-w-sm px-4">
         <div className="flex items-center mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
           <div className="z-20 bg-[#SECONDARY] p-4 rounded-2xl shadow-lg border border-white/20 flex items-center justify-center w-16 h-16 shrink-0">
               <i className="fa-solid fa-user-plus text-white text-3xl"></i>

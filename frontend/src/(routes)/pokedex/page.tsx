@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { ChevronLeft, ChevronRight, LoaderCircle, Search } from 'lucide-react';
-import PokedexCard, { PokemonData } from '@/components/PokedexCard/PokedexCard';
-import { Input } from '@/components/ui/input'; 
+import PokedexCard, { PokemonData } from '../../components/PokedexCard/PokedexCard';
+import { Input } from '../../components/ui/input'; 
 
 import { Pixelify_Sans } from 'next/font/google';
 const pixelFont = Pixelify_Sans({ 
@@ -29,8 +29,7 @@ interface ApiResponse {
     page: number;
 }
 
-const BACKGROUND_IMAGE_URL = 'https://placehold.co/1920x1080/0d2c3e/ffffff?text=PokeTeam+Background';
-const ITEMS_PER_PAGE = 20; 
+const ITEMS_PER_PAGE = 20;
 const API_URL = 'http://localhost:8000/api/pokemons';
 
 const PokedexScreen = () => {
@@ -45,24 +44,20 @@ const PokedexScreen = () => {
         setIsLoading(true);
         setError(null);
         try {
-            const searchParam = search ? `&name=${search}` : ''; 
+            const searchParam = search ? `&name=${search}` : '';
             const response = await fetch(`${API_URL}?page=${pageNumber}&limit=${ITEMS_PER_PAGE}${searchParam}`);
-            
             if (!response.ok) {
                 throw new Error('Failed to retrieve Pokémon data.');
             }
             const result: ApiResponse = await response.json();
-            
             setHasMore(result.data.length === ITEMS_PER_PAGE);
-            
             const uniquePokemons = result.data.map((p, index) => ({
                 ...p,
-                uniqueKey: `${p.id}-${index}` 
+                uniqueKey: `${p.id}-${index}`
             }));
 
             setPokemons(uniquePokemons);
             setPage(result.page);
-            
         } catch (err: any) {
             console.error("Fetch error:", err);
             setError(err.message);
@@ -74,7 +69,7 @@ const PokedexScreen = () => {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            fetchPokemons(page, searchTerm); 
+            fetchPokemons(page, searchTerm);
         }, 500);
 
         return () => clearTimeout(timeoutId);
@@ -94,45 +89,29 @@ const PokedexScreen = () => {
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
-        setPage(1); 
+        setPage(1);
     };
 
     return (
         <section className="relative w-full min-h-screen flex flex-col items-center justify-start bg-gray-900 overflow-x-hidden">
-            {/* BACKGROUND IMAGE*/}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <img 
-                    src={BACKGROUND_IMAGE_URL} 
-                    alt="Background" 
-                    className="w-full h-full object-cover" 
-                />
-            </div>
             <div className="absolute inset-0 bg-[#chart-2]/20 z-[1]" />
 
             {/* SECTION ABOVE IMAGE */}
             <div className="relative w-full h-full">
-                <img
-                    src="/images/pokedex-bg.jpg"
-                    alt="Background de Pokémon"
-                    className="absolute inset-0 h-full w-full object-cover z-0"
-                />
                 <div className="relative z-[2] w-full max-w-7xl mx-auto pt-24 pb-4 md:pt-15 md:pb-8 text-center px-4">
-                   
-                    
                     <div className="flex justify-start">
                         <div className="relative w-full max-w-sm">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-                            <Input  
+                            <Input
                                 type="text"
-                                placeholder="Search any pokemon by name or number" 
+                                placeholder="Search any pokemon by name or number"
                                 value={searchTerm}
-                                onChange={handleSearchChange} 
+                                onChange={handleSearchChange}
                                 className="h-12 w-full pl-10 text-left text-lg rounded-md shadow-sm border-white/0 focus-visible:ring-[#foreground] bg-[#foreground]"
                             />
                         </div>
                     </div>
                 </div>
-                
                 {/* CARDS GRID + BTNS DIV */}
                 <div className="relative z-10 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 -mt-10">
                     <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl shadow-xl min-h-[400px]">
@@ -144,7 +123,6 @@ const PokedexScreen = () => {
                                 <span className="mt-2">Looking for Pokémons...</span>
                             </div>
                         )}
-                        
                         {error && (
                             <div className="text-center p-8 text-red-400 text-xl">
                                 There was an error reloading data: {error}. CHECK IF ({API_URL}) is running.
@@ -156,7 +134,6 @@ const PokedexScreen = () => {
                                 None Pokémon found.
                             </div>
                         )}
-                        
                         {!isLoading && !error && pokemons.length > 0 && (
                             // creates the div of 5 elements per line
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5">
@@ -181,7 +158,7 @@ const PokedexScreen = () => {
                         </span>
                         <button
                             onClick={handleNextPage}
-                            disabled={!hasMore || isLoading} 
+                            disabled={!hasMore || isLoading}
                             className="p-3 bg-red-600 text-white rounded-lg shadow-md disabled:opacity-30 hover:bg-red-500 transition duration-150 flex items-center font-semibold"
                         >
                             <ChevronRight className="w-5 h-5 ml-1" />

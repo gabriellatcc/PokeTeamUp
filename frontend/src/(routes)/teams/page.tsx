@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { Input } from '../../components/ui/input';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import axios from 'axios';
 
-import TeamCard, { TeamData } from '@/components/TeamCard/TeamCard';
-import TeamDetailsPanel from '@/components/TeamDetailsPanel/TeamDetailsPanel';
+import TeamCard, { TeamData } from '../../components/TeamCard/TeamCard';
+import TeamDetailsPanel from '../../components/TeamDetailsPanel/TeamDetailsPanel';
 
-import PokemonSelectorPanel from '@/components/PokemonSelectorPanel/PokemonSelectorPanel'; 
-import { PokemonData } from '@/components/PokedexCard/PokedexCard';
+import PokemonSelectorPanel from '../../components/PokemonSelectorPanel/PokemonSelectorPanel'; 
+import { PokemonData } from '../../components/PokedexCard/PokedexCard';
 
 const BACKGROUND_IMAGE_URL = 'https://placehold.co/1920x1080/0d2c3e/ffffff?text=PokeTeam+Background';
 const API_URL = 'http://localhost:8000/api/teams';
@@ -214,28 +214,18 @@ export default function MyteamsScreen() {
 };
 
     return (
-        <section className="relative w-full h-screen flex flex-col items-center justify-start bg-black overflow-hidden">        
+        <section className="relative w-full h-screen flex flex-col items-center justify-start bg-black overflow-hidden">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-            
             <style jsx global>{`
                 .custom-scrollbar::-webkit-scrollbar { width: 8px; }
                 .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
                 .custom-scrollbar::-webkit-scrollbar-thumb { background: #popover; border-radius: 4px; }
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #border; }
             `}</style>
-                    
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={BACKGROUND_IMAGE_URL} alt="Background" className="w-full h-full object-cover" />
-            </div>
             <div className="absolute inset-0 bg-black/35 z-[1]" />
-            
-            <div className="relative w-full h-full flex flex-col"> 
-                <img src="/images/myteams-bg.jpg" alt="Background" className="absolute inset-0 h-full w-full object-cover z-0" />
-                
+            <div className="relative w-full h-full flex flex-col">
                 <div className="relative z-[2] w-full max-w-7xl mx-auto pt-8 pb-4 px-4 h-full flex flex-col">
-                    
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full pb-8">
-                        
                         <div className="lg:col-span-2 flex flex-col h-full overflow-hidden">
                             <div className="relative w-full mb-6 flex-shrink-0">
                                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-black z-10">
@@ -260,14 +250,14 @@ export default function MyteamsScreen() {
                                                     {teams.map((team, index) => (
                                                         <Draggable key={team.id} draggableId={team.id} index={index}>
                                                             {(provided) => (
-                                                                <TeamCard 
+                                                                <TeamCard
                                                                     team={team}
                                                                     innerRef={provided.innerRef}
                                                                     draggableProps={provided.draggableProps}
                                                                     dragHandleProps={provided.dragHandleProps}
                                                                     onDelete={() => handleDeleteTeam(team.id)}
                                                                     onEditName={(newName) => handleUpdateTeamName(team.id, newName)}
-                                                                    onAddPokemon={(slotIndex) => handleOpenSelector(team.id, slotIndex)} 
+                                                                    onAddPokemon={(slotIndex) => handleOpenSelector(team.id, slotIndex)}
                                                                 />
                                                             )}
                                                         </Draggable>
@@ -286,8 +276,8 @@ export default function MyteamsScreen() {
 
                         <div className="hidden lg:block lg:col-span-1 h-full overflow-hidden">
                             {rightPanelMode === 'selector' ? (
-                                <PokemonSelectorPanel 
-                                    onSelect={handleSelectPokemon} 
+                                <PokemonSelectorPanel
+                                    onSelect={handleSelectPokemon}
                                     onCancel={handleCancelSelection}
                                 />
                             ) : (
