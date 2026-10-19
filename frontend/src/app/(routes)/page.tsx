@@ -31,17 +31,21 @@ export default function HomeScreen() {
         />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto py-16 md:pt-40 md:pb-16 text-center px-4">
-          <h1 className={`${pixelFont.className} text-5xl md:text-7xl font-extrabold text-foreground leading-tight mb-4`}>
-            THERE ARE POKÉMONS WAITING FOR YOU
+          <div>
+            <p className="text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background/15 backdrop-blur-sm p-2 rounded-xl">
+              Explore the Pokédex and build the ultimate team.<br/>Star your favorite Pokémon to keep them just a click away.
+            </p>
+          </div>
+          <h1 className={`${pixelFont.className} inline-block text-5xl md:text-7xl font-extrabold text-chart-5 dark:text-chart-4 leading-tight mb-4`}>
+            THERE ARE POKÉMONS WAITING FOR YOU ! !
           </h1>
-          <p className="text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8">
-            Explore the Pokédex, view detailed stats, and build the ultimate team. Star your favorite Pokémon to keep them just a click away.
-          </p>
-          <Button
-            className={`${pixelFont.className} bg-[var(--chart-4)]/90 text-foreground hover:bg-[var(--chart-4)] transition-all duration-300 px-12 py-7 text-xl font-bold rounded-full border-2 border-[var(--chart-5)] h-6 w-60`}
-            size="lg">
-            Try
-          </Button>
+          <div>
+            <Button
+              className={`${pixelFont.className} bg-chart-4/90 text-foreground hover:bg-chart-4 transition-all duration-300 px-12 py-7 text-xl font-bold rounded-full border-2 border-chart-5 h-6 w-60`}
+              size="lg">
+              Try
+            </Button>
+          </div>
         </div>
       </div>
 
