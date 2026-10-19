@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import "./global.css";
-import ReactQueryProvider from "@/src/providers/ReactQueryProvider"; 
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+
+import ReactQueryProvider from "@/src/providers/ReactQueryProvider";
+import Header from "../components/layout/site-header";
+import Footer from "../components/layout/site-footer";
 
 import { Noto_Sans } from 'next/font/google';
+import { PageBackground } from "../components/layout/site-background";
 
-const noto = Noto_Sans({ 
-  subsets: ['latin'], 
+const noto = Noto_Sans({
+  subsets: ['latin'],
   variable: '--font-noto-sans'
 });
 
@@ -28,10 +29,11 @@ export default function RootLayout({
       </head>
       <body>
         <ReactQueryProvider>
-        <div className="h-screen flex flex-col">          
+        <div className="h-screen flex flex-col">
           <Header />
             <main className="flex-1 w-full relative flex flex-col">
-              {children}
+              <PageBackground />
+              <div className="relative z-10 flex-1">{children}</div>
             </main>
           <Footer />
         </div>
