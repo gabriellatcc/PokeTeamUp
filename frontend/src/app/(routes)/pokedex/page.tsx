@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from 'react';
 
 import { ChevronLeft, ChevronRight, LoaderCircle, Search } from 'lucide-react';
-import PokedexCard, { PokemonData } from '../../../components/PokedexCard/PokedexCard';
-import { Input } from '../../../components/ui/input'; 
+import PokedexCard, { PokemonData } from '../../../components/pokedex/pokemon-card';
+import { Input } from '../../../components/ui/input';
 
 import { Pixelify_Sans } from 'next/font/google';
-const pixelFont = Pixelify_Sans({ 
+const pixelFont = Pixelify_Sans({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-pixel',
@@ -17,7 +17,7 @@ const pixelFont = Pixelify_Sans({
 import { Press_Start_2P } from 'next/font/google';
 
 const pixelFont2 = Press_Start_2P({
-  weight: '400', 
+  weight: '400',
   subsets: ['latin'],
   variable: '--font-pixel',
   display: 'swap',

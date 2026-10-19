@@ -13,7 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/pixelact-ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function TermsSheet({ children }: { children: ReactNode }) {

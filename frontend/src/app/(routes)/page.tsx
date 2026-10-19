@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '../../components/ui/button';
+import { Button } from '../../components/ui/pixelact-ui/button';
 import { StackSection } from '../../components/home/stack-section';
 import { ROUTE_BACKGROUNDS } from '../../lib/content/site-content';
 
@@ -31,9 +31,12 @@ export default function HomeScreen() {
         />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto py-16 md:pt-40 md:pb-16 text-center px-4">
-          <div>
-            <p className="text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background/15 backdrop-blur-sm p-2 rounded-xl">
-              Explore the Pokédex and build the ultimate team.<br/>Star your favorite Pokémon to keep them just a click away.
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-[var(--border)]`}>
+              Explore the Pokédex and build the ultimate team.
+            </p>
+            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-[var(--border)]`}>
+              Star your favorite Pokémon to keep them just a click away.
             </p>
           </div>
           <h1 className={`${pixelFont.className} inline-block text-5xl md:text-7xl font-extrabold text-chart-5 dark:text-chart-4 leading-tight mb-4`}>
@@ -41,7 +44,7 @@ export default function HomeScreen() {
           </h1>
           <div>
             <Button
-              className={`${pixelFont.className} bg-chart-4/90 text-foreground hover:bg-chart-4 transition-all duration-300 px-12 py-7 text-xl font-bold rounded-full border-2 border-chart-5 h-6 w-60`}
+              className={`${pixelFont.className} bg-chart-4/90 text-foreground hover:bg-chart-4 transition-all duration-300 px-12 py-7 text-xl font-bold border-2 border-chart-5 h-6 w-60`}
               size="lg">
               Try
             </Button>

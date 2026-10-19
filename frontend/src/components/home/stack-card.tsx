@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/pixelact-ui/card";
 
 export const StackCard: React.FC<StackItem> = ({
   version,
@@ -17,13 +17,14 @@ export const StackCard: React.FC<StackItem> = ({
 }) => {
   const isCssVar = iconColorClass.startsWith("var(");
   return (
-    <Card className="border-primary-foreground/50 bg-card transition-all duration-300 hover:border-primary-foreground/80">
+    <Card>
+     {/* className="border-primary-foreground/50 bg-card transition-all duration-300 hover:border-primary-foreground/80 shadow-md shadow-black/20 dark:shadow-none dark:drop-shadow-md dark:drop-shadow-primary-foreground/25" */}
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-2xl font-bold text-foreground">
           <Icon
             className={`text-4xl text-${iconColorClass}`}
             style={isCssVar ? { color: iconColorClass } : undefined}
-             aria-hidden="true" 
+             aria-hidden="true"
           />
           <span>{title}</span>
           {version && (

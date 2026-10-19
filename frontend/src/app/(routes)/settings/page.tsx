@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/pixelact-ui/button";
 
 import { useAuth } from "@/hooks/useAuth";
 
@@ -63,7 +63,7 @@ export default function SettingsPage() {
     const trimmedName = name.trim();
 
     if (!trimmedName || !/^\S+@\S+\.\S+$/.test(email)) {
-      pushToast("error", "Houve um erro na alteração de dados");
+      pushToast("error", "There was an error updating your profile");
       return;
     }
 
@@ -81,7 +81,7 @@ export default function SettingsPage() {
     updateUser({ name: trimmedName, email, avatar: pokeball });
     setPassword("");
     setPickerOpen(false);
-    pushToast("success", "Perfil atualizado com sucesso!");
+    pushToast("success", "Updated profile successfully!");
   };
 
   if (isLoading || !user) return null;

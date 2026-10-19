@@ -9,15 +9,15 @@ import axios from 'axios';
 import TeamCard, { TeamData } from '../../../components/teams/TeamCard';
 import TeamDetailsPanel from '../../../components/teams/TeamDetailsPanel';
 
-import PokemonSelectorPanel from '../../../components/PokemonSelectorPanel/PokemonSelectorPanel'; 
-import { PokemonData } from '../../../components/PokedexCard/PokedexCard';
+import PokemonSelectorPanel from '../../../components/pokedex/editar-input-PokemonSelectorPanel'; 
+import { PokemonData } from '../../../components/pokedex/pokemon-card';
 
 const BACKGROUND_IMAGE_URL = 'https://placehold.co/1920x1080/0d2c3e/ffffff?text=PokeTeam+Background';
 const API_URL = 'http://localhost:8000/api/teams';
 const getAuthToken = () => {
-    const token = localStorage.getItem('authToken'); 
-    console.log('Token sendo enviado:', token); 
-    return token; 
+    const token = localStorage.getItem('authToken');
+    console.log('Token sendo enviado:', token);
+    return token;
 };
 
 export default function MyteamsScreen() {
@@ -32,7 +32,7 @@ export default function MyteamsScreen() {
             const response = await fetch(API_URL, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${getAuthToken()}`, 
+                    'Authorization': `Bearer ${getAuthToken()}`,
                 },
             });
 
@@ -42,16 +42,15 @@ export default function MyteamsScreen() {
             }
 
             const teamsData = await response.json();
-            
             const formattedTeams: TeamData[] = teamsData.map((team: any) => ({
                 id: team.id.toString(),
                 name: team.name,
-                pokemons: team.pokemons?.map((p: any) => ({ 
+                pokemons: team.pokemons?.map((p: any) => ({
                     id: p.id,
                     name: p.name,
                     image: p.imgUrl,
                     types: p.types,
-                })) || [], 
+                })) || [],
             }));
 
             setTeams(formattedTeams);
@@ -65,11 +64,10 @@ export default function MyteamsScreen() {
     useEffect(() => {
         fetchTeams();
     }, []);
-    const handleCreateTeam = async () => { 
-        
+    const handleCreateTeam = async () => {
         const newTeamData = {
-            name: `Team ${teams.length + 1}`, 
-            pokemons: [] 
+            name: `Team ${teams.length + 1}`,
+            pokemons: []
         };
 
         try {
@@ -77,7 +75,7 @@ export default function MyteamsScreen() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getAuthToken()}`, 
+                    'Authorization': `Bearer ${getAuthToken()}`,
                 },
                 body: JSON.stringify(newTeamData),
             });
@@ -94,12 +92,12 @@ export default function MyteamsScreen() {
             const teamForState: TeamData = {
                 id: createdTeam.id.toString(),
                 name: createdTeam.name,
-                pokemons: createdTeam.pokemons?.map((p: any) => ({ 
+                pokemons: createdTeam.pokemons?.map((p: any) => ({
                     id: p.id,
                     name: p.name,
-                    image: p.imgUrl, 
+                    image: p.imgUrl,
                     types: p.types,
-                })) || [], 
+                })) || [],
             };
 
             setTeams(prevTeams => [...prevTeams, teamForState]);
@@ -114,11 +112,10 @@ export default function MyteamsScreen() {
    const handleUpdateTeamName = async (teamId: string, newName: string) => {
     const teamToUpdate = teams.find(t => t.id === teamId);
     if (!teamToUpdate) return;
-    
     const updateData = {
-        id: teamId, 
+        id: teamId,
         name: newName,
-        pokemons: teamToUpdate.pokemons.filter(p => p !== null).map(p => ({ id: p!.id })), 
+        pokemons: teamToUpdate.pokemons.filter(p => p !== null).map(p => ({ id: p!.id })),
     };
 
     try {
@@ -126,7 +123,7 @@ export default function MyteamsScreen() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getAuthToken()}`, 
+                'Authorization': `Bearer ${getAuthToken()}`,
             },
             body: JSON.stringify(updateData),
         });
@@ -134,9 +131,8 @@ export default function MyteamsScreen() {
         if (!response.ok) {
             console.error('API Error updating team name:', await response.json());
             alert('Failed to update team name on server.');
-            return; 
+            return;
         }
-        
         setTeams(prevTeams => prevTeams.map(team => {
             if (team.id === teamId) {
                 return { ...team, name: newName };
@@ -165,7 +161,7 @@ export default function MyteamsScreen() {
                     newPokemons[editingContext.slotIndex] = {
                         id: pokemon.id,
                         name: pokemon.name,
-                        image: pokemon.imgUrl, 
+                        image: pokemon.imgUrl,
                         types: pokemon.types
                     };
                     return { ...team, pokemons: newPokemons };
@@ -194,7 +190,7 @@ export default function MyteamsScreen() {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${getAuthToken()}`, 
+                'Authorization': `Bearer ${getAuthToken()}`,
             },
         });
 

@@ -47,7 +47,7 @@ export const TECH_STACK = [
       title: 'Laravel Sanctum',
       description: 'A lightweight authentication system for SPAs (Single Page Applications) and mobile applications.',
       iconClass: IoLockClosed,
-      iconColorClass: 'var(--ring)'
+      iconColorClass: 'destructive'
     },
     {
       version: 'v12',
