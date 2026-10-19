@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import { Separator } from "../../components/ui/separator";
+import { Button } from '../../../components/ui/button';
+import { Input } from '../../../components/ui/input';
+import { Separator } from "../../../components/ui/separator";
 import Link from 'next/link';
 import { useLogin } from '@/hooks/useAuth';
 

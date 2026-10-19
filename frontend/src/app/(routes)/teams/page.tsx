@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { Search, Plus } from 'lucide-react';
-import { Input } from '../../components/ui/input';
+import { Input } from '../../../components/ui/input';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import axios from 'axios';
 
-import TeamCard, { TeamData } from '../../components/teams/TeamCard';
-import TeamDetailsPanel from '../../components/teams/TeamDetailsPanel';
+import TeamCard, { TeamData } from '../../../components/teams/TeamCard';
+import TeamDetailsPanel from '../../../components/teams/TeamDetailsPanel';
 
-import PokemonSelectorPanel from '../../components/PokemonSelectorPanel/PokemonSelectorPanel'; 
-import { PokemonData } from '../../components/PokedexCard/PokedexCard';
+import PokemonSelectorPanel from '../../../components/PokemonSelectorPanel/PokemonSelectorPanel'; 
+import { PokemonData } from '../../../components/PokedexCard/PokedexCard';
 
 const BACKGROUND_IMAGE_URL = 'https://placehold.co/1920x1080/0d2c3e/ffffff?text=PokeTeam+Background';
 const API_URL = 'http://localhost:8000/api/teams';

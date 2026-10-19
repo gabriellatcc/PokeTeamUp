@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { ChevronLeft, ChevronRight, LoaderCircle, Search } from 'lucide-react';
-import PokedexCard, { PokemonData } from '../../components/PokedexCard/PokedexCard';
-import { Input } from '../../components/ui/input'; 
+import PokedexCard, { PokemonData } from '../../../components/PokedexCard/PokedexCard';
+import { Input } from '../../../components/ui/input'; 
 
 import { Pixelify_Sans } from 'next/font/google';
 const pixelFont = Pixelify_Sans({ 

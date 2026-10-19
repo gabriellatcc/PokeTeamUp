@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import { Separator } from "../../components/ui/separator";
-import { Checkbox } from "../../components/ui/checkbox";
-import { Dialog, DialogTrigger } from "../../components/ui/dialog";
-import { TermsModalContent } from "../../components/auth/terms-sheet";
+import { Button } from '../../../components/ui/button';
+import { Input } from '../../../components/ui/input';
+import { Separator } from "../../../components/ui/separator";
+import { Checkbox } from "../../../components/ui/checkbox";
+import { Dialog, DialogTrigger } from "../../../components/ui/dialog";
+import { TermsModalContent } from "../../../components/auth/terms-sheet";
 import { useRegister } from '@/hooks/useAuth';
 import Link from 'next/link';
 
