@@ -6,7 +6,7 @@ import { Input } from '../../../components/ui/input';
 import { Separator } from "../../../components/ui/separator";
 import { Checkbox } from "../../../components/ui/checkbox";
 import { Dialog, DialogTrigger } from "../../../components/ui/dialog";
-import { TermsModalContent } from "../../../components/auth/terms-sheet";
+import { TermsSheet } from "../../../components/auth/terms-sheet";
 import { useRegister } from '@/hooks/useAuth';
 import Link from 'next/link';
 
@@ -107,7 +107,9 @@ export default function RegisterScreen() {
                                 Terms of Use
                             </Button>
                         </DialogTrigger>
-                        <TermsModalContent />
+                        <TermsSheet>
+                            <Button className="underline">Privacy Policy</Button>
+                        </TermsSheet>
                     </Dialog>
                 </label>
             </div>
