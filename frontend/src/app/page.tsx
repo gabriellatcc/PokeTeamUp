@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { Button } from '../components/ui/button';
-import { FullStackOverviewSection } from '../components/FullStackOverviewSection/FullStackOverviewSection';
+import { FullStackOverviewSection } from '../components/home/FullStackOverviewSection';
 
 import { Pixelify_Sans } from 'next/font/google';
+
 const pixelFont = Pixelify_Sans({
   weight: '400',
   subsets: ['latin'],

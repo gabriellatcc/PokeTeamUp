@@ -21,7 +21,7 @@ export default function Footer() {
             style={{ backgroundImage: "url('/images/footer-bg.png')" }}
         >
             <p className={`${notoSans.className} tracking-tight text-[#foreground] font-bold drop-shadow-md text-center text-xs leading-relaxed`}>
-                Data provided by PokéAPI and includes material from Pokémon. © 2025 Pokémon.
+                Data provided by PokéAPI and includes material from Pokémon. © 2026 Pokémon.
                 <br />
                 Developed by <strong className="text-[#accent]">Gabriella Corrêa</strong>
                 <br />

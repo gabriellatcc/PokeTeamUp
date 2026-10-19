@@ -12,7 +12,7 @@ import { UserMenu } from "../../components/UserMenu/UserMenu";
 import { Logo } from "../../components/layout/Logo";
 
 // controle de autenticação e logout
-import { useUser, useLogout } from "@/src/hooks/useAuth";
+import { useUser, useLogout } from "@/hooks/useAuth";
 
 export default function Header() {
   const pathname = usePathname();

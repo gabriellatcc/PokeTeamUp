@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import ReactQueryProvider from "@/src/providers/ReactQueryProvider";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import Header from "../components/layout/site-header";
 import Footer from "../components/layout/site-footer";
 

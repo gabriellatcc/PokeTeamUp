@@ -6,8 +6,8 @@ import { Input } from '../../components/ui/input';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import axios from 'axios';
 
-import TeamCard, { TeamData } from '../../components/TeamCard/TeamCard';
-import TeamDetailsPanel from '../../components/TeamDetailsPanel/TeamDetailsPanel';
+import TeamCard, { TeamData } from '../../components/teams/TeamCard';
+import TeamDetailsPanel from '../../components/teams/TeamDetailsPanel';
 
 import PokemonSelectorPanel from '../../components/PokemonSelectorPanel/PokemonSelectorPanel'; 
 import { PokemonData } from '../../components/PokedexCard/PokedexCard';
