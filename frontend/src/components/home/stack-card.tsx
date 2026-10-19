@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -16,20 +15,25 @@ export const StackCard: React.FC<StackItem> = ({
   iconClass: Icon,
   iconColorClass,
 }) => {
+  const isCssVar = iconColorClass.startsWith("var(");
   return (
     <Card className="border-primary-foreground/50 bg-card transition-all duration-300 hover:border-primary-foreground/80">
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-2xl font-bold text-foreground">
-          <Icon className={`text-4xl ${iconColorClass}`} aria-hidden="true" />
+          <Icon
+            className={`text-4xl text-${iconColorClass}`}
+            style={isCssVar ? { color: iconColorClass } : undefined}
+             aria-hidden="true" 
+          />
           <span>{title}</span>
           {version && (
-            <span className="text-sm font-medium text-foreground/40">{version}</span>
+            <span className={`text-sm font-medium text-${iconColorClass}40`}>{version}</span>
           )}
         </CardTitle>
       </CardHeader>
 
       <CardContent>
-        <CardDescription className="text-foreground/30">
+        <CardDescription className="text-foreground">
           {description}
         </CardDescription>
       </CardContent>
