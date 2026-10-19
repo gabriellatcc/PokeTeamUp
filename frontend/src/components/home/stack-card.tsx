@@ -17,19 +17,19 @@ export const StackCard: React.FC<StackItem> = ({
   iconColorClass,
 }) => {
   return (
-    <Card className="border-neutral-700 bg-neutral-800 transition-all duration-300 hover:border-neutral-500">
+    <Card className="border-primary-foreground/50 bg-card transition-all duration-300 hover:border-primary-foreground/80">
       <CardHeader>
-        <CardTitle className="flex items-center gap-3 text-2xl font-bold text-white">
+        <CardTitle className="flex items-center gap-3 text-2xl font-bold text-foreground">
           <Icon className={`text-4xl ${iconColorClass}`} aria-hidden="true" />
           <span>{title}</span>
           {version && (
-            <span className="text-sm font-medium text-neutral-400">{version}</span>
+            <span className="text-sm font-medium text-foreground/40">{version}</span>
           )}
         </CardTitle>
       </CardHeader>
 
       <CardContent>
-        <CardDescription className="text-neutral-300">
+        <CardDescription className="text-foreground/30">
           {description}
         </CardDescription>
       </CardContent>

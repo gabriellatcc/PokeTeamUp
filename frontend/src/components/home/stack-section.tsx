@@ -13,7 +13,7 @@ const pixelFont = Pixelify_Sans({
 
 export const StackSection: React.FC = () => {
     return (
-        <section className="relative z-[2] w-full bg-black py-16 md:py-10 px-4">
+        <section className="relative z-[2] w-full bg-background py-16 md:py-10 px-4">
             {/* TITLES AND ALL CARD ARE IN THIS DIV*/}
             <div className="max-w-7xl mx-auto">
                 {/* TITLE 1 DIV*/}
@@ -23,7 +23,7 @@ export const StackSection: React.FC = () => {
                     </span>
                 </div>
                 {/* TITLE 2*/}
-                <h2 className={`${pixelFont.className} text-center text-4xl md:text-5xl pb- 4font-extrabold text-white mb-6 md:mb-8 max-w-4xl mx-auto leading-snug `}>
+                <h2 className={`${pixelFont.className} text-center text-4xl md:text-5xl pb- 4font-extrabold text-foreground mb-6 md:mb-8 max-w-4xl mx-auto leading-snug `}>
                     FULL STACK OVERVIEW
                 </h2>
                 {/* <div className="relative z-[2] w-full max-w-7xl mx-auto pt-6 pb-4 md:pt-2 md:pb-8 text-center px-4">

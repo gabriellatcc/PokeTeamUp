@@ -6,6 +6,8 @@ import Footer from "../components/layout/site-footer";
 
 import { Noto_Sans } from 'next/font/google';
 import { PageBackground } from "../components/layout/site-background";
+import { ThemeProvider } from "../providers/theme-provider";
+import { ThemeToggle } from "../components/layout/theme-toggle";
 
 // @ts-expect-error: CSS side-effect import has no type declarations
 import "./global.css";
@@ -26,21 +28,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${noto.variable}`}>
+    <html lang="en" className={`${noto.variable}`} suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body>
-        <ReactQueryProvider>
-        <div className="h-screen flex flex-col">
-          <Header />
-            <main className="flex-1 w-full relative flex flex-col">
-              <PageBackground />
-              <div className="relative z-10 flex-1">{children}</div>
-            </main>
-          <Footer />
-        </div>
-        </ReactQueryProvider>
+        <ThemeProvider>
+          <ReactQueryProvider>
+            <div className="h-screen flex flex-col">
+              <Header />
+              <main className="flex-1 w-full relative flex flex-col">
+                <PageBackground />
+                <div className="relative z-10 flex-1">{children}</div>
+              </main>
+              <Footer />
+            </div>
+          </ReactQueryProvider>
+          <ThemeToggle />
+        </ThemeProvider>
       </body>
     </html>
   );
