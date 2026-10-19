@@ -7,6 +7,9 @@ import Footer from "../components/layout/site-footer";
 import { Noto_Sans } from 'next/font/google';
 import { PageBackground } from "../components/layout/site-background";
 
+// @ts-expect-error: CSS side-effect import has no type declarations
+import "./global.css";
+
 const noto = Noto_Sans({
   subsets: ['latin'],
   variable: '--font-noto-sans'

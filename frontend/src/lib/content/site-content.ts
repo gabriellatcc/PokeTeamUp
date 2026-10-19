@@ -32,7 +32,7 @@ export type Generation = {
   title: string;
   new: number;
   category: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-  pokemons: string[];
+  pokemons: string[];//formatar o que vem da api
 };
 //https://pokeapi.co/api/v2/pokemon?limit=50&offset=0')
 export const generations: Generation[] = [

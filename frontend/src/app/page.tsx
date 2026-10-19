@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from '../components/ui/button';
-import { FullStackOverviewSection } from '../components/home/FullStackOverviewSection';
+import { StackSection } from '../components/home/stack-section';
 
 import { Pixelify_Sans } from 'next/font/google';
 
@@ -34,7 +34,7 @@ export default function HomeScreen() {
             </div>
 
             {/* SECTION FULL STACK OVERVIEW */}
-            <FullStackOverviewSection />
+            <StackSection />
 
             <div className="relative z-[2] w-full bg-neutral-900 py-16 md:py-20 px-4">
                 <div className="max-w-7xl mx-auto text-center">
