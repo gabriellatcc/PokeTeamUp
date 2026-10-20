@@ -7,6 +7,7 @@ import { StackSection } from '../../components/home/stack-section';
 import { ROUTE_BACKGROUNDS } from '../../lib/content/site-content';
 
 import { Pixelify_Sans } from 'next/font/google';
+import { ProjectCard } from '@/components/home/project-card';
 
 const pixelFont = Pixelify_Sans({
   weight: '400',
@@ -39,9 +40,11 @@ export default function HomeScreen() {
               Star your favorite Pokémon to keep them just a click away.
             </p>
           </div>
-          <h1 className={`${pixelFont.className} inline-block text-5xl md:text-7xl font-extrabold text-chart-5 dark:text-chart-4 leading-tight mb-4`}>
+          <h1 className={`${pixelFont.className} mx-auto mb-4 max-w-[16ch] text-balance text-3xl font-extrabold leading-tight text-chart-5 sm:max-w-[20ch] sm:text-5xl md:max-w-[24ch] md:text-6xl lg:text-7xl dark:text-chart-4`}
+          >
             THERE ARE POKÉMONS WAITING FOR YOU ! !
           </h1>
+
           <div>
             <Button
               className={`${pixelFont.className} bg-chart-4/90 text-foreground hover:bg-chart-4 transition-all duration-300 px-12 py-7 text-xl font-bold border-2 border-chart-5 h-6 w-60`}
@@ -52,22 +55,10 @@ export default function HomeScreen() {
         </div>
       </div>
 
-      {/* RESTO DA PÁGINA: fundo sólido normal */}
-      <div className="relative z-[2] w-full bg-card">
+      {/* RESTO DA PÁGINA */}
+      <div className="relative z-[2] w-full bg-card pb-10">
         <StackSection />
-
-        <div className="w-full py-16 md:py-20 px-4">
-          <div className="max-w-7xl mx-auto text-center">
-            <h2 className={`${pixelFont.className} text-4xl md:text-5xl font-extrabold text-foreground mb-8`}>
-              PROJECT INFO
-            </h2>
-            <p className="text-lg text-foreground max-w-4xl mx-auto">
-              PokeTeam Up is a modern web app powered by Next.js and Laravel, showcasing robust
-              integration with complex RESTful APIs. By transforming raw data and dynamically processing
-              images, it delivers a fluid user experience that redefines how fans explore the Pokédex.
-            </p>
-          </div>
-        </div>
+        <ProjectCard />
       </div>
     </section>
   );

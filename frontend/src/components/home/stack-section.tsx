@@ -1,40 +1,53 @@
 import React from 'react';
-
 import { Pixelify_Sans } from 'next/font/google';
 import { StackCard } from './stack-card';
 import { TECH_STACK } from '@/lib/content/stack-content';
 
 const pixelFont = Pixelify_Sans({
-  weight: '400',
+  weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-pixel',
   display: 'swap',
 });
 
 export const StackSection: React.FC = () => {
-    return (
-        <section className="relative z-[2] w-full bg-background py-16 md:py-10 px-4">
-            {/* TITLES AND ALL CARD ARE IN THIS DIV*/}
-            <div className="max-w-7xl mx-auto">
-                {/* TITLE 1 DIV*/}
-                <div className="flex items-center justify-center mb-3">
-                    <span className="text-sm font-semibold text-chart-4 whitespace-nowrap tracking-widest text-foreground/70">
-                        TECHNICAL SPECIFICATIONS
-                    </span>
-                </div>
-                {/* TITLE 2*/}
-                <h2 className="font-sans text-center text-4xl md:text-5xl font-extrabold text-foreground mb-6 md:mb-8 max-w-4xl mx-auto leading-snug">
-                    FULL STACK OVERVIEW
-                </h2>
-                {/* GRID DIV FOR CARDS */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {TECH_STACK.map((tech, index) => (
-                        <StackCard key={index} {...tech} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section className={`${pixelFont.variable} relative w-full overflow-hidden bg-slate-50`}>
+      <div className="relative bg-background px-4 pt-16 pb-24 text-center text-card">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-black/20 px-4 py-1.5 text-xs font-semibold tracking-wider text-card backdrop-blur-md border border-card/10">
+          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+          Technical Specifications & Architecture
+        </div>
+
+        <h2 className="font-[family-name:var(--font-pixel)] text-3xl font-extrabold uppercase tracking-widest text-card drop-shadow-md sm:text-4xl md:text-5xl lg:text-6xl mb-4">
+          FULL STACK OVERVIEW
+        </h2>
+
+        <p className="mx-auto max-w-2xl text-sm font-medium text-card sm:text-base opacity-90">
+          Explore the scalable, high-performance architecture driving PokeTeam Up forward.
+        </p>
+      </div>
+
+      <div className="relative z-10 -mt-1 h-3 w-full bg-slate-900 shadow-md">
+        <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-slate-900 bg-card shadow-lg transition-transform hover:scale-105">
+          <div className="h-7 w-7 rounded-full border-2 border-slate-900 bg-slate-100 shadow-inner flex items-center justify-center">
+            <div className="h-2.5 w-2.5 rounded-full bg-card border border-slate-400" />
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-0 bg-card px-4 pt-16 pb-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          {/* GRID DE CARTÕES */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {TECH_STACK.map((tech, index) => (
+              <StackCard key={index} {...tech} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default StackSection;

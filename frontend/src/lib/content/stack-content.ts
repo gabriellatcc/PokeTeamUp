@@ -11,6 +11,7 @@ export type StackItem = {
   description: string;
   iconClass: IconType;
   iconColorClass: string;
+  specificDetail?:  [string, boolean];
 };
 
 export const TECH_STACK = [
@@ -19,41 +20,47 @@ export const TECH_STACK = [
       title: 'Next.js',
       description: 'App Router was used for hybrid rendering and SEO optimization. Midleware for access control via Edge.',
       iconClass: SiNextdotjs,
-      iconColorClass: 'var(--foreground)'
+      iconColorClass: 'var(--foreground)',
+      specificDetail: ['Frontend Framework', true]
     },
     {
-      version: 'v13',
+      version: 'v5',
       title: 'React Query',
       description: 'A robust architecture combining the performance of Server-Side Rendering with the security of a consolidated API.',
       iconClass: IoCloudDone,
-      iconColorClass: 'var(--muted-foreground)'
+      iconColorClass: 'var(--muted-foreground)',
+      specificDetail: ['Data Fetching & State Management', true]
     },
     {
-      version: '',
+      version: 'v4',
       title: 'Tailwind + Shadcn/ui',
       description: 'Component-based interface that is accessible and responsive. Consistent design system focused on user experience.',
       iconClass: RiTailwindCssFill,
-      iconColorClass: 'var(--secondary)'
+      iconColorClass: 'var(--secondary)',
+      specificDetail: ['Styling Library', true]
     },
     {
-      version: '',
+      version: 'v5',
       title: 'TypeScript',
       description: 'Strong typing for reliable, maintainable, and scalable application development.',
       iconClass: BiLogoTypescript,
-      iconColorClass: 'var(--chart-2)'
+      iconColorClass: 'var(--chart-2)',
+      specificDetail: ['Programming Language', true]
     },
     {
-      version: 'v12',
+      version: 'v11',
       title: 'Laravel Sanctum',
       description: 'A lightweight authentication system for SPAs (Single Page Applications) and mobile applications.',
       iconClass: IoLockClosed,
-      iconColorClass: 'var(--destructive)'
+      iconColorClass: 'var(--destructive)',
+      specificDetail: ['Authentication System', false]
     },
     {
       version: 'v12',
       title: 'Laravel',
       description: 'A robust RESTful API serving as a source of truth. It manages complex business rules and data persistence.',
       iconClass: FaLaravel,
-      iconColorClass: 'var(--primary)'
+      iconColorClass: 'var(--primary)',
+      specificDetail: ['Backend Framework', false]
     },
 ];

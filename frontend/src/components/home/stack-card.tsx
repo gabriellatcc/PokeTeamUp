@@ -3,10 +3,10 @@ import type { StackItem } from "@/lib/content/stack-content";
 import {
   Card,
   CardContent,
-  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/pixelact-ui/card";
+} from "@/components/ui/card";
 
 export const StackCard: React.FC<StackItem> = ({
   version,
@@ -14,36 +14,61 @@ export const StackCard: React.FC<StackItem> = ({
   description,
   iconClass: Icon,
   iconColorClass,
+  specificDetail
 }) => {
   const iconColor =
-    iconColorClass.startsWith("var(") ||
-    iconColorClass.startsWith("oklch")
+    iconColorClass.startsWith("var(") || iconColorClass.startsWith("oklch")
       ? iconColorClass
       : `var(--color-${iconColorClass.replace(/^text-/, "")})`;
-
+  const [detailText, isActive] = specificDetail ?? [];
   return (
-    <Card className="h-full min-w-0 overflow-hidden transition-all duration-300 hover:-translate-y-0.5">
-      <CardHeader>
-        <CardTitle className="flex min-h-[3.25rem] items-start gap-3 min-w-0 text-lg sm:text-xl font-bold text-foreground">
-          <Icon
-            className="mt-0.5 shrink-0 text-3xl"
-            style={{ color: iconColor }}
-            aria-hidden="true"
-          />
-          <span className="min-w-0 flex-1 break-words leading-tight">{title}</span>
-          {version && (
-            <span className="shrink-0 text-xs font-medium opacity-70">
-              {version}
+    <Card className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border-2 border-slate-900 bg-card p-6 shadow-[0_6px_0_0_#1e293b] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_10px_0_0_#1e293b]">
+      {version && (
+        <span className="absolute top-4 right-4 rounded-md border border-slate-900/10 bg-slate-100 px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-slate-600 shadow-xs">
+          {version}
+        </span>
+      )}
+
+      <CardHeader className="p-0 pb-3">
+        <CardTitle className="flex items-center gap-3 pr-12">
+          {/* Ícone */}
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-50 border border-slate-100">
+            <Icon
+              className="text-2xl transition-transform duration-200 group-hover:scale-110"
+              style={{ color: iconColor }}
+              aria-hidden="true"
+            />
+          </div>
+
+          <div className="flex flex-col min-w-0">
+            <span className="font-['Press_Start_2P',monospace] text-sm font-bold leading-snug tracking-tight text-slate-900 break-words">
+              {title}
             </span>
-          )}
+          </div>
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="flex-1">
-        <CardDescription className="text-sm leading-relaxed text-foreground">
+      <CardContent className="flex-1 p-0 pt-1">
+        <p className="text-xs font-normal leading-relaxed text-slate-600">
           {description}
-        </CardDescription>
+        </p>
       </CardContent>
+      <CardFooter className="p-0 pt-3">
+        {specificDetail && (
+          <div className="mt-6 flex w-full items-center justify-between border-t border-slate-100 pt-3 text-[11px]">
+            <span className="font-semibold uppercase tracking-wider text-slate-400">
+              {detailText}
+            </span>
+            <span
+              className={`font-bold uppercase tracking-wider ${
+                isActive ? "text-emerald-600" : "text-red-600"
+              }`}
+            >
+              {isActive ? "Active" : "Inactive"}
+            </span>
+          </div>
+        )}
+      </CardFooter>
     </Card>
   );
 };
