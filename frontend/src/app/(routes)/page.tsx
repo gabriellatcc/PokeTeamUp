@@ -33,10 +33,10 @@ export default function HomeScreen() {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto py-16 md:pt-40 md:pb-16 text-center px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-[var(--border)]`}>
+            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-border`}>
               Explore the Pokédex and build the ultimate team.
             </p>
-            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-[var(--border)]`}>
+            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-border`}>
               Star your favorite Pokémon to keep them just a click away.
             </p>
           </div>
@@ -55,7 +55,6 @@ export default function HomeScreen() {
         </div>
       </div>
 
-      {/* RESTO DA PÁGINA */}
       <div className="relative z-[2] w-full bg-card pb-10">
         <StackSection />
         <ProjectCard />
