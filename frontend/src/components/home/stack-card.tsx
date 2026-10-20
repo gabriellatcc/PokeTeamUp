@@ -24,7 +24,7 @@ export const StackCard: React.FC<StackItem> = ({
   return (
     <Card className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border-2 border-foreground bg-card p-6 shadow-[0_6px_0_0_#1e293b] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_10px_0_0_#1e293b]">
       {version && (
-        <span className="absolute top-4 right-4 rounded-md border border-foreground/10 bg-card px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-muted-foreground shadow-xs">
+        <span className="absolute top-4 right-4 rounded-md border border-foreground/10 bg-card px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-foreground/80 shadow-xs">
           {version}
         </span>
       )}
@@ -56,12 +56,12 @@ export const StackCard: React.FC<StackItem> = ({
       <CardFooter className="p-0 pt-3">
         {specificDetail && (
           <div className="mt-6 flex w-full items-center justify-between border-t border-foreground pt-3 text-[11px]">
-            <span className="font-semibold uppercase tracking-wider text-card/40">
+            <span className="font-semibold uppercase tracking-wider text-foreground/80">
               {detailText}
             </span>
             <span
               className={`font-bold uppercase tracking-wider ${
-                isActive ? "text-chart-4" : "text-foreground"
+                isActive ? "text-chart-4" : "text-destructive"
               }`}
             >
               {isActive ? "Active" : "Inactive"}

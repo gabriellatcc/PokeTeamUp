@@ -28,7 +28,7 @@ export const TECH_STACK = [
       title: 'React Query',
       description: 'A robust architecture combining the performance of Server-Side Rendering with the security of a consolidated API.',
       iconClass: IoCloudDone,
-      iconColorClass: 'var(--muted-foreground)',
+      iconColorClass: 'var(--accent)',
       specificDetail: ['Data Fetching & State Management', true]
     },
     {
@@ -60,7 +60,7 @@ export const TECH_STACK = [
       title: 'Laravel',
       description: 'A robust RESTful API serving as a source of truth. It manages complex business rules and data persistence.',
       iconClass: FaLaravel,
-      iconColorClass: 'var(--primary)',
+      iconColorClass: 'var(--destructive)',
       specificDetail: ['Backend Framework', false]
     },
 ];
