@@ -4,11 +4,11 @@ import axios, { type AxiosRequestConfig } from "axios";
 export const AUTH_TOKEN_STORAGE_KEY = "metricnotes_access_token";
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "https://api-placeholder.com",
 });
 
 export function getAuthAccessToken(): string | null {
-  if (typeof sessionStorage === "undefined" || typeof localStorage === "undefined") {
+  if (typeof window === "undefined") {
     return null;
   }
   return (
@@ -30,11 +30,8 @@ function notifyAuthStorageChanged() {
   }
 }
 
-/**
- * @param rememberMe — if true, persist in `localStorage`; otherwise session-only (`sessionStorage`).
- */
 export function setAuthAccessToken(token: string | null, rememberMe = true) {
-  if (typeof sessionStorage === "undefined" || typeof localStorage === "undefined") return;
+  if (typeof window === "undefined") return;
 
   sessionStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
   localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
@@ -64,25 +61,30 @@ export const apiClient = async <T>(
   config: AxiosRequestConfig,
   options?: AxiosRequestConfig,
 ): Promise<T> => {
-  const response = await axiosInstance({
-    ...config,
-    ...options,
-    headers: {
-      ...(config.headers ?? {}),
-      ...(options?.headers ?? {}),
-    },
-  });
+  try {
+    const response = await axiosInstance({
+      ...config,
+      ...options,
+      headers: {
+        ...(config.headers ?? {}),
+        ...(options?.headers ?? {}),
+      },
+    });
 
-  const { data, status } = response;
+    const { data, status } = response;
 
-  // No JSON body (e.g. 204) — let callers handle `undefined` if needed
-  if (status === 204 || status === 205) {
+    if (status === 204 || status === 205) {
+      return data as T;
+    }
+
+    if (data === undefined || data === null) {
+      throw new ApiEmptyResponseError();
+    }
+
     return data as T;
+  } catch (error) {
+    // Você pode retornar dados vazios mockados ou repassar o erro tratável.
+    console.warn("The Backend is disabled right now.");
+    throw error;
   }
-
-  if (data === undefined || data === null) {
-    throw new ApiEmptyResponseError();
-  }
-
-  return data as T;
 };

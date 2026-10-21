@@ -3,8 +3,6 @@ import { toast } from "sonner";
 
 import { ApiEmptyResponseError } from "@/lib/api-client";
 
-export { toast } from "sonner";
-
 /** Laravel-style JSON: `{ message?: string, errors?: Record<string, string[]> }` */
 export function getApiErrorMessage(error: unknown): string {
   if (error instanceof ApiEmptyResponseError) {
