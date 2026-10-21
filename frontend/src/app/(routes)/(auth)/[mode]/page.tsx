@@ -16,7 +16,7 @@ export default async function AuthPage({
   const Form = forms[mode as keyof typeof forms];
 
   return (
-    <section className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden min-h-screen">
+    <section className="relative w-full flex flex-col items-center justify-center overflow-x-hidden min-h-[calc(100dvh-150px)] py-6">
       <Form />
     </section>
   );

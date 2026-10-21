@@ -53,7 +53,7 @@ export function SignupForm(){
             <div className="z-20 bg-[var(--chart-1)] p-4 rounded-2xl shadow-lg border border-muted/20 flex items-center justify-center w-16 h-16 shrink-0">
                 <i className="fa-solid fa-user-plus text-muted text-3xl"></i>
             </div>
-            <div className="z-10 -ml-6 pl-8 pr-8 flex items-center h-16 bg-gradient-to-r from-[var(--chart-2)]/90 to-[var(--chart-2)]/70 backdrop-blur-md rounded-r-2xl shadow-md border-y border-r border-muted/10">
+            <div className="z-10 -ml-6 pl-8 pr-8 flex items-center h-16 bg-gradient-to-r from-[var(--chart-2)]/90 to-[var(--chart-2)]/70 backdrop-blur-md border-y border-r border-muted/10">
                 <h1 className="text-4xl font-bold text-muted drop-shadow-md tracking-wide leading-none" >
                 Sign up
                 </h1>
@@ -96,13 +96,12 @@ export function SignupForm(){
                 />
                 <div className="flex items-start space-x-2 w-full">
                     <Checkbox id="terms" className="peer mt-1 flex-shrink-0 border-foreground dark:border-[var(--accent-foreground)]" />
-                    <label htmlFor="terms" className="text-sm font-normal leading-snug cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex flex-wrap items-center">
+                    <label htmlFor="terms" className="text-xs font-normal leading-snug cursor-pointer peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex flex-wrap items-center">
                         <span className="mutedspace-nowrap mr-1">I read and agree to the</span>
-                         <TermsSheet>
+                        <TermsSheet>
                             <PixelButton
                                 variant="link"
-                                className="text-secondary underline hover:text-secondary/80"
-                            >
+                                className="text-xs text-foreground hover:!text-background">
                                 Terms and Privacy Policy
                             </PixelButton>
                         </TermsSheet>
