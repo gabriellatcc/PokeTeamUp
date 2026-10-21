@@ -1,0 +1,23 @@
+import { SigninForm } from "@/components/auth/signin-form";
+import { SignupForm } from "@/components/auth/signup-form";
+
+const forms = {
+  signin: SigninForm,
+  signup: SignupForm,
+} as const;
+
+export default async function AuthPage({
+  params,
+}: {
+  params: Promise<{ mode: string }>;
+}) {
+  const { mode } = await params;
+
+  const Form = forms[mode as keyof typeof forms];
+
+  return (
+    <section className="relative w-full h-full flex flex-col items-center justify-center overflow-hidden min-h-screen">
+      <Form />
+    </section>
+  );
+}
