@@ -8,6 +8,7 @@ import { ROUTE_BACKGROUNDS } from '../../lib/content/site-content';
 
 import { Pixelify_Sans } from 'next/font/google';
 import { ProjectCard } from '@/components/home/project-card';
+import { DemoLoginButton } from "@/components/auth/demo-signin-button";
 
 const pixelFont = Pixelify_Sans({
   weight: '400',
@@ -31,27 +32,22 @@ export default function HomeScreen() {
           className="object-cover z-0"
         />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto py-16 md:pt-40 md:pb-16 text-center px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-border`}>
-              Explore the Pokédex and build the ultimate team.
-            </p>
-            <p className={`${pixelFont.className} text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8 bg-background dark:text-foreground dark:bg-border`}>
-              Star your favorite Pokémon to keep them just a click away.
-            </p>
-          </div>
-          <h1 className={`${pixelFont.className} mx-auto mb-4 max-w-[16ch] text-balance text-3xl font-extrabold leading-tight text-chart-5 sm:max-w-[20ch] sm:text-5xl md:max-w-[24ch] md:text-6xl lg:text-7xl dark:text-chart-4`}
-          >
+        <div className={`${pixelFont.className} absolute right-4 top-4 z-20 flex max-w-[16rem] items-start gap-3 rounded-xl border border-[var(--shadow-color)] bg-card/60 px-4 py-3 text-xs text-foreground shadow-md backdrop-blur-md sm:right-6 sm:top-6 sm:max-w-xs sm:text-sm animate-bounce [animation-duration:1s] motion-reduce:animate-none`}>
+          <span
+            className="mt-1 h-2 w-2 shrink-0 animate-pulse rounded-full bg-chart-4"
+            aria-hidden="true"
+          />
+          <p>
+            Explore the Pokédex, build the ultimate team and star your favorite Pokémon.
+          </p>
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-16 pb-40 text-center md:pt-40 md:pb-56">
+          <h1 className={`${pixelFont.className} mx-auto mb-8 max-w-[16ch] text-balance text-3xl font-extrabold leading-tight text-muted drop-shadow-[4px_4px_0_var(--shadow-color)] sm:max-w-[20ch] sm:text-5xl md:max-w-[24ch] md:text-6xl lg:text-7xl`}>
             THERE ARE POKÉMONS WAITING FOR YOU ! !
           </h1>
 
-          <div>
-            <Button
-              className={`${pixelFont.className} bg-chart-4/90 text-foreground hover:bg-chart-4 px-12 py-7 text-xl font-bold border-2 border-chart-5 h-6 w-60`}
-              size="lg">
-              Try
-            </Button>
-          </div>
+          <DemoLoginButton/>
         </div>
       </div>
 

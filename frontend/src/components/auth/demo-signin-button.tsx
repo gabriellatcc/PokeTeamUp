@@ -2,21 +2,25 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/pixelact-ui/button";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth"; // ou useAuthContext se for o mesmo hook
+import { DEMO_USER } from "@/lib/mock-user";
 
 export function DemoLoginButton() {
-  const { loginAsDemo } = useAuth();
+  const { user, isLoggedIn, loginAsDemo } = useAuth();
   const router = useRouter();
+
+  const isDemoLogged = isLoggedIn && user?.id === DEMO_USER.id;
 
   return (
     <Button
-      variant="outline"
+      variant={isDemoLogged ? "default" : "default"}
+      disabled={isDemoLogged}
       onClick={() => {
         loginAsDemo();
         router.push("/settings");
       }}
     >
-      Sign in as Demo User
+      {isDemoLogged ? "Logged in as Demo User" : "Try as Demo User"}
     </Button>
   );
 }

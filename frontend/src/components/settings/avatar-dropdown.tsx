@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { DemoLoginButton } from "@/components/auth/demo-signin-button";
 
 interface UserMenuProps {
   isLoggedIn: boolean;
@@ -53,7 +52,6 @@ export function UserMenu({ isLoggedIn, onLogout, userName }: UserMenuProps) {
         </Button>
       </Link>
 
-    <DemoLoginButton />
     </div>
   );
 }

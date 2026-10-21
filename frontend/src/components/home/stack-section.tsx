@@ -13,24 +13,24 @@ const pixelFont = Pixelify_Sans({
 export const StackSection: React.FC = () => {
   return (
     <section className={`${pixelFont.variable} relative w-full overflow-hidden bg-card`}>
-      <div className="relative bg-background px-4 pt-16 pb-24 text-center text-card">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-foreground/20 px-4 py-1.5 text-xs font-semibold tracking-wider text-card backdrop-blur-md border border-card/10">
-          <span className="h-2 w-2 rounded-full bg-chart-4 animate-pulse" />
+      <div className="relative bg-background px-4 pt-16 pb-10 text-center text-card dark:bg-secondary">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-muted/40 px-4 py-1.5 text-sl tracking-wider text-foreground/70 backdrop-blur-md border border-card/10 dark:text-foreground/90">
+          <span className="h-2 w-2 rounded-full bg-chart-4 animate-pulse" style={{ animationDuration: '1s' }}/>
           Technical Specifications & Architecture
         </div>
 
-        <h2 className="font-(family-name:--font-pixel) text-3xl font-extrabold uppercase tracking-widest text-card drop-shadow-md sm:text-4xl md:text-5xl lg:text-6xl mb-4">
+        <h2 className="font-(family-name:--font-pixel) text-3xl font-extrabold uppercase tracking-widest text-card drop-shadow-md sm:text-4xl md:text-5xl lg:text-6xl mb-4 dark:text-foreground">
           FULL STACK OVERVIEW
         </h2>
 
-        <p className="mx-auto max-w-2xl text-sm font-medium text-card sm:text-base opacity-90">
+        <p className="mx-auto max-w-2xl text-sm font-medium text-card sm:text-base opacity-90 dark:text-foreground">
           Explore the scalable, high-performance architecture driving PokeTeam Up forward.
         </p>
       </div>
 
-      <div className="relative z-10 -mt-1 h-3 w-full bg-muted shadow-md">
-        <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-muted shadow-2xl dark:border-card">
-          <div className="h-7 w-7 rounded-full bg-[var(--shadow-color)]/35 shadow-2xl flex items-center justify-center transition-transform hover:scale-130 dark:border-card/90 dark:bg-[var(--shadow-color)]/60"/>
+      <div className="relative z-10 -mt-1 h-3 w-full bg-muted shadow-md dark:bg-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-muted dark:to-transparent dark:shadow-none">
+        <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-muted shadow-2xl  dark:border-card">
+          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-muted shadow-2xl transition-transform hover:scale-[1.3] dark:border-card/90 dark:bg-muted" />
         </div>
       </div>
 
