@@ -61,7 +61,7 @@ export function SettingsSheet() {
 
     const handleOpenChange = (isOpen: boolean) => {
         if (!isOpen && !isClosingRef.current) {
-            return; 
+            return;
         }
         if (!isOpen) {
             closeSheet();
@@ -122,16 +122,16 @@ export function SettingsSheet() {
                 </button>
 
                 {pickerOpen && (
-                <div className="absolute left-1/2 top-40 z-20 -translate-x-1/2">
-                    <PokeballPicker
-                    value={pokeball}
-                    onChange={(id) => {
-                        setPokeball(id);
-                        setPickerOpen(false);
-                    }}
-                    />
-                </div>
-                )}
+                    <div className="absolute left-4 top-36 z-30">
+                        <PokeballPicker
+                        value={pokeball}
+                        onChange={(id) => {
+                            setPokeball(id);
+                            setPickerOpen(false);
+                        }}
+                        />
+                    </div>
+                    )}
                 </div>
 
                 <div className="space-y-5">

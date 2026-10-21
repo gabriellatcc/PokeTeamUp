@@ -44,8 +44,8 @@ export default function RootLayout({
                 <Header />
                 <main className="flex-1 w-full relative flex flex-col">
                   <PageBackground />
-                  <div className="relative z-10 flex-1">{children}</div>
-                </main>
+                    <div className="relative z-10 flex-1 page-transition">{children}</div>
+                    </main>
                 <Footer />
               </div>
 
