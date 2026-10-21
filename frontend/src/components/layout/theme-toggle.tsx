@@ -24,8 +24,15 @@ export function ThemeToggle() {
   }, [theme]);
 
   const handleToggle = () => {
+    const html = document.documentElement;
+    html.classList.add("theme-transition");
+
     setRotation((current) => current + 180);
     toggleTheme();
+
+    window.setTimeout(() => {
+      html.classList.remove("theme-transition");
+    }, 1050);
   };
 
   if (!mounted) {

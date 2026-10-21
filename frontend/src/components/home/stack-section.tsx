@@ -28,11 +28,9 @@ export const StackSection: React.FC = () => {
         </p>
       </div>
 
-      <div className="relative z-10 -mt-1 h-3 w-full bg-foreground shadow-md">
-        <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-foreground/30 bg-card shadow-lg transition-transform hover:scale-105">
-          <div className="h-7 w-7 rounded-full border-2 border-foreground/90 bg-card shadow-inner flex items-center justify-center">
-            <div className="h-2.5 w-2.5 rounded-full bg-card border border-card" />
-          </div>
+      <div className="relative z-10 -mt-1 h-3 w-full bg-muted shadow-md">
+        <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-muted shadow-2xl dark:border-card">
+          <div className="h-7 w-7 rounded-full bg-[var(--shadow-color)]/35 shadow-2xl flex items-center justify-center transition-transform hover:scale-130 dark:border-card/90 dark:bg-[var(--shadow-color)]/60"/>
         </div>
       </div>
 

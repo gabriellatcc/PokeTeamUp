@@ -1,16 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@layer base {
-    * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply font-sans;
-    @apply bg-background text-foreground;
-  }
-}
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -33,7 +23,7 @@
   --border: oklch(0.3059 0.0431 240.9731);
   --input: oklch(0.4838 0.1944 271.1402);
   --ring: oklch(0.4838 0.1944 271.1402);
-  --chart-1: oklch(0.5412 0.2127 24.7912);
+  --chart-1: oklch(55.555% 0.20141 25.369);
   --chart-2: oklch(0.8048 0.1038 235.5211);
   --chart-3: oklch(0.7208 0.1460 90.9919);
   --chart-4: oklch(0.7000 0.1500 154.1857);
@@ -88,7 +78,7 @@
   --border: oklch(0.9276 0.0058 264.5313);
   --input: oklch(0.2086 0.0128 264.2461);
   --ring: oklch(0.5795 0.2024 24.3945);
-  --chart-1: oklch(0.5795 0.2024 24.3945);
+  --chart-1: oklch(26.485% 0.03631 263.672);
   --chart-2: oklch(0.8048 0.1038 235.5211);
   --chart-3: oklch(0.8652 0.1767 90.3665);
   --chart-4: oklch(0.8330 0.1410 154.1857);
@@ -185,8 +175,18 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
   }
+}
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
 }

@@ -10,12 +10,7 @@ const pixelFont = Pixelify_Sans({
 
 export const ProjectCard: React.FC = () => {
   return (
-    <Card className="relative max-w-7xl mx-auto gap-3 overflow-hidden rounded-2xl border border-card bg-card py-6 shadow-xl transition-all hover:shadow-2xl">
-      <div
-        className="absolute inset-y-0 left-0 w-2 bg-background"
-        aria-hidden="true"
-      />
-
+    <Card className="relative max-w-7xl mx-auto gap-3 overflow-hidden rounded-2xl border border-foreground bg-card py-6 shadow-xl hover:shadow-2xl">
       <CardHeader className="px-6 text-center sm:px-10">
         <CardTitle
           className={`${pixelFont.className} text-xl font-bold uppercase tracking-widest text-foreground sm:text-2xl`}

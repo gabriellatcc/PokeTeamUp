@@ -47,7 +47,7 @@ export default function HomeScreen() {
 
           <div>
             <Button
-              className={`${pixelFont.className} bg-chart-4/90 text-foreground hover:bg-chart-4 transition-all duration-300 px-12 py-7 text-xl font-bold border-2 border-chart-5 h-6 w-60`}
+              className={`${pixelFont.className} bg-chart-4/90 text-foreground hover:bg-chart-4 px-12 py-7 text-xl font-bold border-2 border-chart-5 h-6 w-60`}
               size="lg">
               Try
             </Button>

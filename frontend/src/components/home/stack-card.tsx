@@ -22,7 +22,7 @@ export const StackCard: React.FC<StackItem> = ({
       : `var(--color-${iconColorClass.replace(/^text-/, "")})`;
   const [detailText, isActive] = specificDetail ?? [];
   return (
-    <Card className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border-2 border-foreground bg-card p-6 shadow-[0_6px_0_0_#1e293b] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_10px_0_0_#1e293b]">
+    <Card className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border-2 border-foreground bg-card p-6 shadow-[0_6px_0_0_#1e293b] hover:-translate-y-1 hover:shadow-[0_10px_0_0_#1e293b]">
       {version && (
         <span className="absolute top-4 right-4 rounded-md border border-foreground/10 bg-card px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-foreground/80 shadow-xs">
           {version}
@@ -64,7 +64,7 @@ export const StackCard: React.FC<StackItem> = ({
                 isActive ? "text-chart-4" : "text-destructive"
               }`}
             >
-              {isActive ? "Active" : "Inactive"}
+              {isActive ? "Active" : "Currently Inactive"}
             </span>
           </div>
         )}
