@@ -127,25 +127,21 @@ export function getGenerationBySlug(slug: string): Generation | undefined {
   return generations.find((generation) => generation.slug === slug);
 }
 
-export type SiteNavItem = {
-  label: string;
-  to: "/home" | "/pokedex" | "/myteams" | "/favorites" | "/settings" | "signin" | "signup" | "/pokemon";
-};
+export const NAV_ITEMS = [
+  { label: "Home", to: "/home" },
+  { label: "Pokedex", to: "/pokedex" },
+  { label: "My Teams", to: "/myteams" },
+  { label: "Favorites", to: "/favorites" },
+  { label: "Settings", to: "/settings" },
+  { label: "Pokemon", to: "/pokemon" },
+] as const;
 
-// src="public/images/"
-export const BASE_NAV_ITEMS = [
-  { label: "Home", to: "/home" as const },
-  { label: "pokedex", to: "/pokedex" as const },
-  { label: "My Teams", to: "/myteams" as const },
-  { label: "Favorites", to: "/favorites" as const },
-  { label: "Settings", to: "/settings" as const },
-  { label: "Sign In", to: "signin" as const },
-  { label: "Sign Up", to: "signup" as const },
-  { label: "Pokemon", to: "/pokemon" as const },
-] as const satisfies readonly SiteNavItem[];
+export const AUTH_ITEMS = [
+  { label: "Sign In", to: "/signin" },
+  { label: "Sign Up", to: "/signup" },
+] as const;
 
-
-export const NAV_ITEMS = BASE_NAV_ITEMS;
+export type SiteNavItem = (typeof NAV_ITEMS)[number] | (typeof AUTH_ITEMS)[number];
 
 export const DEFAULT_BACKGROUND = "/images/home-bg.png";
 

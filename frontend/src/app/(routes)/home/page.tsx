@@ -2,9 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '../../components/ui/pixelact-ui/button';
-import { StackSection } from '../../components/home/stack-section';
-import { ROUTE_BACKGROUNDS } from '../../lib/content/site-content';
+import { StackSection } from '../../../components/home/stack-section';
+import { ROUTE_BACKGROUNDS } from '../../../lib/content/site-content';
 
 import { Pixelify_Sans } from 'next/font/google';
 import { ProjectCard } from '@/components/home/project-card';
