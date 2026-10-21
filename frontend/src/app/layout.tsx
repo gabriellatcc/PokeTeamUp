@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import Header from "../components/layout/site-header";
 import Footer from "../components/layout/site-footer";
-
 import { Noto_Sans } from 'next/font/google';
 import { PageBackground } from "../components/layout/site-background";
 import { ThemeProvider } from "../providers/theme-provider";
 import { ThemeToggle } from "../components/layout/theme-toggle";
 import { AuthProvider } from "@/contexts/auth-context";
+import { Toaster } from "../components/ui/sonner";
 
 // @ts-expect-error: CSS side-effect import has no type declarations
 import "./global.css";
@@ -48,11 +48,13 @@ export default function RootLayout({
                 </main>
                 <Footer />
               </div>
+
+              {/* Botão flutuante de tema */}
+              <ThemeToggle />
             </AuthProvider>
           </ReactQueryProvider>
-
-          <ThemeToggle />
         </ThemeProvider>
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );

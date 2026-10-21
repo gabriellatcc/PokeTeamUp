@@ -37,7 +37,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="fixed bottom-6 right-6 z-50 size-11 rounded-full border border-border bg-background" />
+      <div className="fixed bottom-6 right-6 z-990 pointer-events-auto size-11 rounded-full border border-border bg-background" />
     );
   }
 
@@ -54,7 +54,7 @@ export function ThemeToggle() {
             onClick={handleToggle}
             aria-label={isDark ? "Activate light mode" : "Activate dark mode"}
             className={cn(
-              "fixed bottom-6 right-6 z-50 size-11 rounded-full border-border bg-background text-foreground hover:bg-card hover:text-foreground"
+              "fixed bottom-6 right-6 z-990 pointer-events-auto size-11 rounded-full border-border bg-background text-foreground hover:bg-card hover:text-foreground"
             )}
           >
             <span

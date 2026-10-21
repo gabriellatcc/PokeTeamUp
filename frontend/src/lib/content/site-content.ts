@@ -130,10 +130,7 @@ export function getGenerationBySlug(slug: string): Generation | undefined {
 export const NAV_ITEMS = [
   { label: "Home", to: "/home" },
   { label: "Pokedex", to: "/pokedex" },
-  { label: "My Teams", to: "/myteams" },
-  { label: "Favorites", to: "/favorites" },
-  { label: "Settings", to: "/settings" },
-  { label: "Pokemon", to: "/pokemon" },
+  // { label: "Pokemon", to: "/pokemon/{id}" },
 ] as const;
 
 export const AUTH_ITEMS = [
@@ -141,6 +138,11 @@ export const AUTH_ITEMS = [
   { label: "Sign Up", to: "/signup" },
 ] as const;
 
+export const SIGNEDIN_ITEMS = [
+  { label: "My Teams", to: "/myteams" },
+  { label: "Favorites", to: "/favorites" },
+  { label: "Settings", to: "/settings" },
+]
 export type SiteNavItem = (typeof NAV_ITEMS)[number] | (typeof AUTH_ITEMS)[number];
 
 export const DEFAULT_BACKGROUND = "/images/home-bg.png";
@@ -150,7 +152,6 @@ export const ROUTE_BACKGROUNDS: Record<string, string> = {
   "/pokedex": "/images/pokedex.jpg",
   "/myteams": "/images/myteams.jpg",
   "/favorites": "/images/settings.jpg",
-  "/settings": "/images/settings.jpg",
   "/signin": "/images/auth.jpg",
   "/signup": "/images/auth.jpg",
 };

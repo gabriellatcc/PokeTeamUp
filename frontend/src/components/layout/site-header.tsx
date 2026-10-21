@@ -56,6 +56,7 @@ export default function Header() {
               isLoggedIn={isLoggedIn}
               onLogout={handleLogout}
               userName={user?.name}
+              userAvatar={user?.avatar}
             />
           )}
         </div>
