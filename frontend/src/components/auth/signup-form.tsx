@@ -15,7 +15,7 @@ export function SignupForm(){
     const [isPending, setIsPending] = useState(false);
 
     //state to store data
-        const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
@@ -49,17 +49,6 @@ export function SignupForm(){
     };
     return(
         <div className="relative z-10 flex flex-col items-center w-full max-w-sm px-4">
-            <div className="flex items-center mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
-            <div className="z-20 bg-[var(--chart-1)] p-4 rounded-2xl shadow-lg border border-muted/20 flex items-center justify-center w-16 h-16 shrink-0">
-                <i className="fa-solid fa-user-plus text-muted text-3xl"></i>
-            </div>
-            <div className="z-10 -ml-6 pl-8 pr-8 flex items-center h-16 bg-gradient-to-r from-[var(--chart-2)]/90 to-[var(--chart-2)]/70 backdrop-blur-md border-y border-r border-muted/10">
-                <h1 className="text-4xl font-bold text-muted drop-shadow-md tracking-wide leading-none" >
-                Sign up
-                </h1>
-            </div>
-            </div>
-
             <div className="w-full space-y-4 flex flex-col items-center animate-in fade-in zoom-in-95 duration-500 delay-150">
                 {/* {error && (
                     <div className="w-full p-2 bg-red-500/80 text-muted rounded text-sm text-center">

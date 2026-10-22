@@ -44,52 +44,41 @@ export function SigninForm(){
     const inputClass = "h-12 text-lg rounded border-[var(--background)]/30 placeholder:text-foreground/20";
     return (
         <div className="relative z-10 flex flex-col items-center w-full max-w-sm px-4">
-            <div className="flex items-center mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
-            <div className="z-20 bg-[var(--chart-1)] p-4 rounded-2xl shadow-lg border border-muted/20 flex items-center justify-center w-16 h-16 shrink-0">
-                <i className="fa-solid fa-right-to-bracket text-muted text-4xl"></i>
-            </div>
-            <div className="z-10 -ml-6 pl-8 pr-8 flex items-center h-16 bg-gradient-to-r from-[var(--chart-2)]/90 to-[var(--chart-2)]/70 backdrop-blur-md border-y border-r border-muted/10">
-                <h1 className="text-4xl font-bold text-muted drop-shadow-md tracking-wide leading-none" >
-                Sign in
-                </h1>
-            </div>
-            </div>
-
             {/* FORM */}
             <div className="w-full space-y-4 flex flex-col items-center animate-in fade-in zoom-in-95 duration-500 delay-150">
-            {/* error if fail */}
-            {/* {error && (
-                <div className="w-full p-3 bg-red-500/90 text-muted rounded-md text-sm text-center border border-red-700">
-                    Email or Password incorrect.
-                </div>
-            )} */}
+                {/* error if fail */}
+                {/* {error && (
+                    <div className="w-full p-3 bg-red-500/90 text-muted rounded-md text-sm text-center border border-red-700">
+                        Email or Password incorrect.
+                    </div>
+                )} */}
 
-            {/* INPUT EMAIL */}
-            <Input
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                type="email"
-                placeholder="Email"
-                className={`${inputClass}`}/>
+                {/* INPUT EMAIL */}
+                <Input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    type="email"
+                    placeholder="Email"
+                    className={`${inputClass}`}/>
 
-            {/* INPUT PASSWORD */}
-            <Input
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                type="password"
-                placeholder="Password"
-                className={`${inputClass}`}/>
+                {/* INPUT PASSWORD */}
+                <Input
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    type="password"
+                    placeholder="Password"
+                    className={`${inputClass}`}/>
 
-            {/* btn START */}
-            <Button
-                onClick={handleSubmit}
-                disabled={isPending}
-                className="w-full h-12 text-xl font-bold rounded-xl shadow-lg mt-4 bg-[var(--chart-1)] hover:bg-[var(--chart-1)] text-muted border-b-4 border-border active:scale-95 active:border-b-0 active:translate-y-1 transition-all">
-                {isPending ? 'Loading...' : 'Start'}
-            </Button>
-
+                {/* btn START */}
+                <Button
+                    variant="success"
+                    onClick={handleSubmit}
+                    disabled={isPending}
+                    >
+                    {isPending ? 'Loading...' : 'Start'}
+                </Button>
             </div>
 
             <div className="mt-8 flex flex-col items-center w-full animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
@@ -97,8 +86,7 @@ export function SigninForm(){
             {/* register btn*/}
             <Link href="/signup" className="w-full flex justify-center">
                 <Button
-                    variant="default"
-                    className="px-12 py-1 text-lg h-auto border-2 border-muted text-background bg-transparent hover:bg-muted]/20 hover:text-background active:scale-95 active:translate-y-1 transition-all">
+                    variant="secondary">
                     Register
                 </Button>
             </Link>
